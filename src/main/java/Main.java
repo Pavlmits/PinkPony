@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import extractors.CommitExtractor;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -17,7 +18,7 @@ public class Main {
 
 //        final ObjectId tree = commitsList.get(0).getTree();
 //
-//        TreeWalk treeWalk = new TreeWalk(CommitExtractor.openJGitRepository(path));
+//        TreeWalk treeWalk = new TreeWalk(extractors.CommitExtractor.openJGitRepository(path));
 //        List<String> filesList = new ArrayList<>();
 //        treeWalk.addTree(tree);
 //        treeWalk.setRecursive(false);

@@ -1,5 +1,6 @@
 import java.util.List;
 
+import model.Commit;
 import org.jgrapht.Graph;
 
 public class GraphCreator {
