@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -14,9 +13,8 @@ public class Commit {
 
     private String author;
 
-    private List<String> files;
+    private List<String> paths;
 
     private String message;
 
-    private LocalDateTime date;
 }
