@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Map;
 
 import extractors.CommitExtractor;
+import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -10,10 +11,10 @@ import org.eclipse.jgit.revwalk.RevCommit;
 public class Main {
 
     public static void main(String[] args) throws IOException, GitAPIException {
-        final String path = "C:\\dev\\algorithms-wfa\\.git";
-        CommitExtractor commitExtractor = new CommitExtractor(path);
-        final List<RevCommit> commitsList = commitExtractor.extract();
-        final Map<RevCommit, List<DiffEntry>> commitMap = commitExtractor.extractFiles(commitsList);
+        final String path = "https://github.com/Pavlmits/PinkPony/";
+        final Git git = GitCreator.createLocalGitInstance(path);
+        final List<RevCommit> commitsList = CommitExtractor.extractWithOutFiles(git);
+        final Map<RevCommit, List<DiffEntry>> commitMap = CommitExtractor.extractWithFiles(git);
         System.out.println("ok");
 
 //        final ObjectId tree = commitsList.get(0).getTree();
