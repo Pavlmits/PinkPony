@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class CommitFilesExtractorTest {
+public class CommitDifferencesExtractorTest {
 
     @Test
     public void extract() {

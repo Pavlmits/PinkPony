@@ -4,17 +4,26 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.eclipse.jgit.lib.PersonIdent;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public class Commit {
 
-    private long id;
+    private String name;
 
-    private String author;
+    private PersonIdent author;
+
+    private PersonIdent committer;
 
     private List<String> paths;
 
-    private String message;
+    private String fullMessage;
+
+    private Commit[] parents;
 
 }
