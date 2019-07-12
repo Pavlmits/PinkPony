@@ -2,7 +2,7 @@ package extractors;
 
 import org.junit.Test;
 
-public class CommitExtractorTest {
+public class RevCommitExtractorTest {
 
     @Test
     public void extractTest(){
