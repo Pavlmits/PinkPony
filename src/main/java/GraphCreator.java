@@ -16,9 +16,12 @@ public class GraphCreator {
             graph.addVertex(file);
         }
 
+        int c =0;
         final Table<String, String, Integer> fileTable = weightCalculator(fileSet, commitList);
         for (Table.Cell<String, String, Integer> cell : fileTable.cellSet()){
-            DefaultWeightedEdge weightedEdge = graph.addEdge(cell.getRowKey(), cell.getRowKey());
+            DefaultWeightedEdge weightedEdge = graph.addEdge(cell.getRowKey(), cell.getColumnKey());
+            c++;
+            System.out.println(c);
             graph.setEdgeWeight(weightedEdge, cell.getValue());
         }
         return graph;

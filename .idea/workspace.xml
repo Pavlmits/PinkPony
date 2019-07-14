@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a0fa3e2-b58d-4964-808c-c583f22d2b5f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/converters/CommitConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/filters/FilesFilter.java" afterDir="false" />
+    <list default="true" id="5a0fa3e2-b58d-4964-808c-c583f22d2b5f" name="Default Changelist" comment="#Issue:2 extract weights and first graph attempt">
+      <change afterPath="$PROJECT_DIR$/src/main/java/extractors/RevCommitExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CommitFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GitCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GitCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GraphCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extractors/CommitExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extractors/RevCommitExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extractors/CommitFilesExtractor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/extractors/CommitExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/extractors/RevCommitExtractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/extractors/CommitFilesExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/extractors/CommitDifferencesExtractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/CommitFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GraphCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphCreator.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/extractors/CommitExtractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/extractors/CommitExtractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/extractors/CommitFilesExtractor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Commit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Commit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/extractors/CommitExtractorTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/extractors/CommitFilesExtractorTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,124 +25,56 @@
   <component name="CoverageViewManager">
     <option name="myElementSize" value="241" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <splitter split-orientation="horizontal" split-proportion="0.54322916">
-            <split-first>
-              <leaf>
-                <file pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="561">
-                        <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-                        <folding>
-                          <element signature="imports" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf>
-                <file pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/src/main/java/converters/CommitConverter.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="680">
-                        <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
-                        <folding>
-                          <element signature="imports" expanded="true" />
-                          <element signature="e#458#459#0" expanded="true" />
-                          <element signature="e#504#505#0" expanded="true" />
-                          <element signature="e#713#714#0" expanded="true" />
-                          <element signature="e#776#777#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="2025250666">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="8" />
-          <entry key="java" value="135" />
+          <entry key="class" value="9" />
+          <entry key="java" value="141" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="8" />
-          <entry key="JAVA" value="135" />
+          <entry key="CLASS" value="9" />
+          <entry key="JAVA" value="141" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
-          <entry key="java" value="8255" />
-          <entry key="txt" value="122" />
+          <entry key="java" value="8352" />
+          <entry key="txt" value="169" />
           <entry key="xml" value="117" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8255" />
-          <entry key="PLAIN_TEXT" value="130" />
+          <entry key="JAVA" value="8352" />
+          <entry key="PLAIN_TEXT" value="177" />
           <entry key="XML" value="117" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.45081967">
+    <splitter split-orientation="horizontal" split-proportion="0.42684564">
       <split-first>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/model/Commit.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="27" selection-start-line="27" selection-end-line="27" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/filters/FilesFilter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/extractors/RevCommitExtractor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+                <state relative-caret-position="680">
+                  <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -168,7 +85,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="359">
+                <state relative-caret-position="765">
                   <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -177,14 +94,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="47" selection-start-line="47" selection-end-line="47" />
+                <state relative-caret-position="116">
+                  <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/internal/storage/file/FileSnapshot.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="109">
+                  <caret line="185" selection-start-line="185" selection-end-line="185" />
                 </state>
               </provider>
             </entry>
@@ -192,24 +118,45 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
+                <state relative-caret-position="850">
                   <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/GraphCreator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="106">
-                  <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+                <state relative-caret-position="119">
+                  <caret line="19" column="81" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/GitCreator.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="282">
+                  <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/storage/file/FileRepositoryBuilder.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="170">
+                  <caret line="86" column="22" selection-start-line="86" selection-start-column="22" selection-end-line="86" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -302,9 +249,9 @@
     <option name="vmOptions" value="-Xms12g -Xmx12g" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="448" />
-    <option name="y" value="81" />
-    <option name="width" value="977" />
+    <option name="x" value="446" />
+    <option name="y" value="80" />
+    <option name="width" value="979" />
     <option name="height" value="830" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -405,7 +352,7 @@
     <property name="SearchEverywhereHistoryKey" value="revco&#9;FILE&#9;jar://C:/Localdata/Java/maven_repo/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/revwalk/RevCommit.java&#10;diffentry&#9;PSI&#9;JAVA://org.eclipse.jgit.diff.DiffEntry" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562945965020" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562963585473" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
@@ -513,7 +460,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562749824781</updated>
-      <workItem from="1562749828823" duration="70258000" />
+      <workItem from="1562749828823" duration="71760000" />
+      <workItem from="1562961926208" duration="1271000" />
     </task>
     <task id="LOCAL-00001" summary="#Issue:1 create file extractor from commits">
       <created>1562844538726</created>
@@ -536,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562856255936</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#Issue:2 extract weights and first graph attempt">
+      <created>1562957788589</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1562957788589</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -572,7 +527,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70258000" />
+    <option name="totallyTimeSpent" value="73031000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -584,7 +539,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1552" height="840" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.08955224" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -595,8 +550,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.2624729" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26345608" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4208243" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.49787235" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4206799" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
@@ -608,7 +563,6 @@
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3264642" />
       <window_info anchor="bottom" id="SonarLint" order="14" weight="0.30043384" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -618,6 +572,7 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.3297587" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32995737" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08955224" />
@@ -664,7 +619,8 @@
     <MESSAGE value="#Issue:1 create file extractor from commits" />
     <MESSAGE value="#Issue:1 add unit tests for GitCreator" />
     <MESSAGE value="#Issue:1 remove static" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Issue:1 remove static" />
+    <MESSAGE value="#Issue:2 extract weights and first graph attempt" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Issue:2 extract weights and first graph attempt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -675,21 +631,28 @@
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GraphCreator.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GraphCreator.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/revwalk/RevObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
-          <folding>
-            <element signature="e#3023#3024#0" expanded="true" />
-            <element signature="e#3041#3042#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/attributes/Attribute.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-194">
@@ -701,43 +664,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="515" selection-start-line="515" selection-end-line="515" />
-          <folding>
-            <element signature="e#13565#13566#0" expanded="true" />
-            <element signature="e#13607#13608#0" expanded="true" />
-            <element signature="e#13801#13802#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/extractor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/model.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/treewalk/CanonicalTreeParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2754">
           <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
-          <folding>
-            <element signature="e#3530#3531#0" expanded="true" />
-            <element signature="e#3549#3550#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/storage/file/FileRepositoryBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="89" column="47" lean-forward="true" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -755,26 +690,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/RevCommitExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="92" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/RemoteCommitExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="99" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/RemoteCommitExtractor.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/api/ListBranchCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -807,43 +723,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mappers/CommitMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/converters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mappers/CommitMapper.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/converters.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/lib/PersonIdent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="63" column="24" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="24" />
-          <folding>
-            <element signature="e#9114#9115#0" expanded="true" />
-            <element signature="e#9132#9133#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/converters/CommitMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
-            <element signature="e#297#298#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/converters/CommitMap.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/util/RawParseUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12155">
@@ -855,9 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#3826#3827#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -865,9 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="381" selection-start-line="381" selection-end-line="381" />
-          <folding>
-            <element signature="e#13066#13067#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -882,9 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="170" selection-start-line="170" selection-end-line="170" />
-          <folding>
-            <element signature="e#7443#7444#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -899,9 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="69" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="e#2784#2785#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -909,9 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="275" selection-start-line="275" selection-end-line="275" />
-          <folding>
-            <element signature="e#9412#9413#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -919,9 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="213" selection-start-line="213" selection-end-line="213" />
-          <folding>
-            <element signature="e#8019#8020#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -929,10 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
           <caret line="409" column="25" selection-start-line="409" selection-start-column="18" selection-end-line="409" selection-end-column="25" />
-          <folding>
-            <element signature="e#13087#13088#0" expanded="true" />
-            <element signature="e#13114#13115#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -940,12 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="252" column="22" selection-start-line="252" selection-start-column="22" selection-end-line="252" selection-end-column="22" />
-          <folding>
-            <element signature="e#9157#9158#0" expanded="true" />
-            <element signature="e#9191#9192#0" expanded="true" />
-            <element signature="e#10440#10441#0" expanded="true" />
-            <element signature="e#10481#10482#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -953,16 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="133" column="60" selection-start-line="133" selection-start-column="45" selection-end-line="133" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GitCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -977,10 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1600">
           <caret line="1483" column="19" selection-start-line="1483" selection-start-column="19" selection-end-line="1483" selection-end-column="19" />
-          <folding>
-            <element signature="e#58951#58952#0" expanded="true" />
-            <element signature="e#59020#59021#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -988,10 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-          <folding>
-            <element signature="e#1215#1216#0" expanded="true" />
-            <element signature="e#1281#1282#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,14 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-          <folding>
-            <element signature="e#254#255#0" expanded="true" />
-            <element signature="e#290#291#0" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#382#383#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1028,20 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/converters/CommitConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,78 +876,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jgrapht/jgrapht-core/1.3.0/jgrapht-core-1.3.0-sources.jar!/org/jgrapht/graph/AbstractBaseGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1154">
-          <caret line="98" column="22" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/revwalk/RevCommit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="372" column="29" selection-start-line="372" selection-start-column="29" selection-end-line="372" selection-end-column="29" />
-          <folding>
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7647#7648#0" expanded="true" />
-            <element signature="e#10283#10284#0" expanded="true" />
-            <element signature="e#10307#10308#0" expanded="true" />
-            <element signature="e#11045#11046#0" expanded="true" />
-            <element signature="e#11071#11072#0" expanded="true" />
-            <element signature="e#11476#11477#0" expanded="true" />
-            <element signature="e#11497#11498#0" expanded="true" />
-            <element signature="e#12102#12103#0" expanded="true" />
-            <element signature="e#12122#12123#0" expanded="true" />
-            <element signature="e#17806#17807#0" expanded="true" />
-            <element signature="e#17859#17860#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Commit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/filters/FilesFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/RevCommitExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1137,10 +890,98 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/filters/FilesFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0.jar!/com/google/common/collect/HashBasedTable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jgrapht/jgrapht-core/1.3.0/jgrapht-core-1.3.0-sources.jar!/org/jgrapht/graph/AbstractBaseGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1164">
+          <caret line="546" selection-start-line="546" selection-end-line="546" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/converters/CommitConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GraphCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="119">
+          <caret line="19" column="81" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Commit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/extractors/RevCommitExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/storage/file/FileRepositoryBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="86" column="22" selection-start-line="86" selection-start-column="22" selection-end-line="86" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GitCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1149,11 +990,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="116">
+          <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/internal/storage/file/FileSnapshot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="185" selection-start-line="185" selection-end-line="185" />
         </state>
       </provider>
     </entry>

@@ -12,6 +12,8 @@ import filters.FilesFilter;
 import model.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultWeightedEdge;
 import org.modelmapper.ModelMapper;
 
 public class Main {
@@ -29,21 +31,17 @@ public class Main {
             commit.setPaths(filesFilter.filterAll(commit.getPaths()));
             files.addAll(commit.getPaths());
         }
-        System.out.println(files.size());
-        for (final String file : files) {
-            System.out.println(file);
-        }
-
         final GraphCreator graphCreator = new GraphCreator();
         final Table<String, String, Integer> fileTable = graphCreator.weightCalculator(files, commitList);
-
-        for (Table.Cell<String, String, Integer> cell : fileTable.cellSet()) {
-            System.out.println(cell.getRowKey()
-                    + "    |      "
-                    + cell.getColumnKey()
-                    + "|"
-                    + cell.getValue());
-        }
+        final Graph<String, DefaultWeightedEdge> graph = graphCreator.create(files, commitList);
+        System.out.println("ok");
+//        for (Table.Cell<String, String, Integer> cell : fileTable.cellSet()) {
+//            System.out.println(cell.getRowKey()
+//                    + "    |      "
+//                    + cell.getColumnKey()
+//                    + "|"
+//                    + cell.getValue());
+//        }
 
 
     }
