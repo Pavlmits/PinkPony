@@ -37,13 +37,13 @@ public class RevCommitExtractor {
     public Map<RevCommit, List<DiffEntry>> extractWithFiles(final Git git) throws GitAPIException, IOException {
         final List<RevCommit> commitList = extractWithOutFiles(git);
         final Map<RevCommit, List<DiffEntry>> commitMap = new HashMap<>();
-        //TODO change size of loop
-        for (int i = 0; i < commitList.size(); i++) {
-            List<DiffEntry> diffs = commitList.get(i).getParents().length > 0 ? commitDifferencesExtractor.extract(git, commitList.get(i), commitList.get(i).getParent(0)) : new ArrayList<>();
-            commitMap.put(commitList.get(i), diffs);
+        for (RevCommit aCommitList : commitList) {
+            List<DiffEntry> diffs = aCommitList.getParents().length > 0 ? commitDifferencesExtractor.extract(git, aCommitList, aCommitList.getParent(0)) : new ArrayList<>();
+            commitMap.put(aCommitList, diffs);
         }
         return commitMap;
     }
+
 
 }
 

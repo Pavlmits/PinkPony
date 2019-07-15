@@ -23,6 +23,11 @@ import org.eclipse.jgit.treewalk.CanonicalTreeParser;
  */
 public class CommitDifferencesExtractor {
 
+    /**
+     * Converts the Files at DiffEntry to String
+     * @param filesList
+     * @return list of String
+     */
     public static List<String> diffEntryToString(final List<DiffEntry> filesList) {
         final List<String> files = new ArrayList<>();
         for (DiffEntry entry : filesList) {
@@ -31,6 +36,14 @@ public class CommitDifferencesExtractor {
         return files;
     }
 
+    /**
+     *
+     * @param git
+     * @param oldCommit
+     * @param newCommit
+     * @return
+     * @throws GitAPIException
+     */
     public List<DiffEntry> extract(final Git git, final RevCommit oldCommit, final RevCommit newCommit) throws GitAPIException {
         try {
             return git.diff()
