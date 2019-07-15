@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import org.eclipse.jgit.lib.PersonIdent;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Commit {
+public class Commit implements Serializable {
 
     private String name;
 
@@ -24,6 +25,8 @@ public class Commit {
 
     private String fullMessage;
 
-    private Commit[] parents;
+//    public String getName(){
+//        return id;
+//    }
 
 }

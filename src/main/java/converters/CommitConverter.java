@@ -1,8 +1,6 @@
 package converters;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import extractors.CommitDifferencesExtractor;
@@ -39,26 +37,22 @@ public class CommitConverter {
      * @param revCommitList
      * @return List of Commits
      */
-    public List<Commit> convertAll(final List<RevCommit> revCommitList) {
+    public List<Commit> convertAllWithOutFiles(final List<RevCommit> revCommitList) {
         return revCommitList.stream()
                 .map(revCommit -> modelMapper.map(revCommit, Commit.class))
                 .collect(Collectors.toList());
     }
 
     /**
-     *
-     * @param commitDiffEntryMap
-     * @return
+     * Extracts commited files
+     * @param revCommit
+     * @param diffEntries
+     * @return Commit domain
      */
-    public List<Commit> convertAllWithFiles(final Map<RevCommit, List<DiffEntry>> commitDiffEntryMap) {
-        final List<Commit> commitList = new ArrayList<>();
-        for (Map.Entry<RevCommit, List<DiffEntry>> entry : commitDiffEntryMap.entrySet()) {
-            final Commit commit = convert(entry.getKey());
-            commit.setPaths(CommitDifferencesExtractor.diffEntryToString(entry.getValue()));
-            commitList.add(commit);
-        }
-        return commitList;
+    public Commit convertWithFiles(final RevCommit revCommit, final List<DiffEntry> diffEntries){
+        final Commit commit = convert(revCommit);
+        commit.setPaths(CommitDifferencesExtractor.diffEntryToString(diffEntries));
+        return commit;
     }
-
 
 }
