@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
@@ -21,6 +23,7 @@ public class RevCommitExtractor {
 
     private final CommitDifferencesExtractor commitDifferencesExtractor;
 
+    @Inject
     public RevCommitExtractor(final CommitDifferencesExtractor commitDifferencesExtractor) {
         this.commitDifferencesExtractor = commitDifferencesExtractor;
     }

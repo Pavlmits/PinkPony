@@ -2,13 +2,11 @@ package clustering;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.google.common.graph.MutableValueGraph;
-import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 public class InterconnectivityCalculator {
@@ -35,4 +33,6 @@ public class InterconnectivityCalculator {
     private List<DefaultWeightedEdge> getAllEdgesFromVertice(final MutableValueGraph<String, Integer> graph, final String vertex) {
         return new ArrayList<>();
     }
+
+
 }

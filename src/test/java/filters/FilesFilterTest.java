@@ -40,4 +40,5 @@ public class FilesFilterTest {
         assertEquals(0, actual.size());
     }
 
+
 }

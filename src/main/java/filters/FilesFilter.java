@@ -3,8 +3,13 @@ package filters;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 public class FilesFilter {
 
+    @Inject
+    public FilesFilter() {
+    }
 
     public List<String> filterAll(final List<String> filesList){
         return filesList.stream()

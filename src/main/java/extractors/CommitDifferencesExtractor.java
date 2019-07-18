@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
@@ -23,12 +25,16 @@ import org.eclipse.jgit.treewalk.CanonicalTreeParser;
  */
 public class CommitDifferencesExtractor {
 
+    @Inject
+    public CommitDifferencesExtractor() {
+    }
+
     /**
      * Converts the Files at DiffEntry to String
      * @param filesList
      * @return list of String
      */
-    public static List<String> diffEntryToString(final List<DiffEntry> filesList) {
+    public  List<String> diffEntryToString(final List<DiffEntry> filesList) {
         final List<String> files = new ArrayList<>();
         for (DiffEntry entry : filesList) {
             files.add(entry.getNewPath());
@@ -37,7 +43,7 @@ public class CommitDifferencesExtractor {
     }
 
     /**
-     *
+     * Extract the changed files in a commit
      * @param git
      * @param oldCommit
      * @param newCommit
