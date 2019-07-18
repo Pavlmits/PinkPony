@@ -38,5 +38,4 @@ public class GitCreatorTest {
         FileUtils.forceDelete(remotePath.getAbsoluteFile());
     }
 
-
 }

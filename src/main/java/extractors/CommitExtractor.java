@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import converters.CommitConverter;
 import model.Commit;
 import org.eclipse.jgit.api.Git;
@@ -14,13 +16,12 @@ import org.eclipse.jgit.revwalk.RevCommit;
 public class CommitExtractor {
 
     private final Git git;
-    private final RevCommitExtractor revCommitExtractor;
     private final CommitConverter commitConverter;
     private final CommitDifferencesExtractor commitDifferencesExtractor;
 
-    public CommitExtractor(final Git git, final RevCommitExtractor revCommitExtractor, final CommitConverter commitConverter, final CommitDifferencesExtractor commitDifferencesExtractor) {
+    @Inject
+    public CommitExtractor(final Git git, final CommitConverter commitConverter, final CommitDifferencesExtractor commitDifferencesExtractor) {
         this.git = git;
-        this.revCommitExtractor = revCommitExtractor;
         this.commitConverter = commitConverter;
         this.commitDifferencesExtractor = commitDifferencesExtractor;
     }

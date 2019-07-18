@@ -3,6 +3,8 @@ package converters;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 import extractors.CommitDifferencesExtractor;
 import model.Commit;
 import org.eclipse.jgit.diff.DiffEntry;
@@ -19,8 +21,12 @@ public class CommitConverter {
 
     private final ModelMapper modelMapper;
 
-    public CommitConverter(final ModelMapper modelMapper) {
+    private final CommitDifferencesExtractor commitDifferencesExtractor;
+
+    @Inject
+    public CommitConverter(final ModelMapper modelMapper, final CommitDifferencesExtractor commitDifferencesExtractor) {
         this.modelMapper = modelMapper;
+        this.commitDifferencesExtractor = commitDifferencesExtractor;
     }
 
     /**
@@ -44,14 +50,14 @@ public class CommitConverter {
     }
 
     /**
-     * Extracts commited files
+     * Extracts commit with the changed files
      * @param revCommit
      * @param diffEntries
      * @return Commit domain
      */
     public Commit convertWithFiles(final RevCommit revCommit, final List<DiffEntry> diffEntries){
         final Commit commit = convert(revCommit);
-        commit.setPaths(CommitDifferencesExtractor.diffEntryToString(diffEntries));
+        commit.setPaths(commitDifferencesExtractor.diffEntryToString(diffEntries));
         return commit;
     }
 
