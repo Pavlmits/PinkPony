@@ -7,7 +7,7 @@ import dagger.Provides;
 class ClusteringModule {
 
     @Provides
-    Clustering provideWatsetClustering(final WatsetClustering clustering){
+    Clustering provideWatsetClustering(final MLClustering clustering){
         return clustering;
     }
 }

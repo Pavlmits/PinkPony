@@ -25,8 +25,4 @@ public class Commit implements Serializable {
 
     private String fullMessage;
 
-//    public String getName(){
-//        return id;
-//    }
-
 }

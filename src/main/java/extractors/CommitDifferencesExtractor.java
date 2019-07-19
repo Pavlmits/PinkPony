@@ -1,5 +1,7 @@
 package extractors;
 
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.inject.Inject;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
+import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -31,10 +34,11 @@ public class CommitDifferencesExtractor {
 
     /**
      * Converts the Files at DiffEntry to String
+     *
      * @param filesList
      * @return list of String
      */
-    public  List<String> diffEntryToString(final List<DiffEntry> filesList) {
+    public List<String> diffEntryToString(final List<DiffEntry> filesList) {
         final List<String> files = new ArrayList<>();
         for (DiffEntry entry : filesList) {
             files.add(entry.getNewPath());
@@ -43,7 +47,25 @@ public class CommitDifferencesExtractor {
     }
 
     /**
+     * Extracts the commits from all branch
+     * @param git
+     * @param oldCommit
+     * @param newCommit
+     * @return
+     * @throws IOException
+     */
+    public List<DiffEntry> quickExtract(final Git git, final RevCommit oldCommit, final RevCommit newCommit) throws IOException {
+        FileOutputStream stdout = new FileOutputStream(FileDescriptor.out);
+        try (DiffFormatter diffFormatter = new DiffFormatter(stdout)) {
+            diffFormatter.setRepository(git.getRepository());
+            return diffFormatter.scan(oldCommit, newCommit);
+
+        }
+    }
+
+    /**
      * Extract the changed files in a commit
+     *
      * @param git
      * @param oldCommit
      * @param newCommit
@@ -56,14 +78,14 @@ public class CommitDifferencesExtractor {
                     .setOldTree(prepareTreeParser(git.getRepository(), oldCommit))
                     .setNewTree(prepareTreeParser(git.getRepository(), newCommit))
                     .call();
-        }catch (GitAPIException e){
+        } catch (GitAPIException e) {
             System.err.println("CommitDifferencesExtractor : Could not call the Git API");
             throw e;
         }
 
     }
 
-    private AbstractTreeIterator prepareTreeParser(final Repository repository, final RevCommit commit){
+    private AbstractTreeIterator prepareTreeParser(final Repository repository, final RevCommit commit) {
         // from the commit we can build the tree which allows us to construct the TreeParser
         //noinspection Duplicates
         final CanonicalTreeParser treeParser = new CanonicalTreeParser();
@@ -74,12 +96,11 @@ public class CommitDifferencesExtractor {
             }
 
             walk.dispose();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Could not read from the tree!");
         }
         return treeParser;
 
     }
-
 
 }

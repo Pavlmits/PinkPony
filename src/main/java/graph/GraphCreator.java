@@ -31,7 +31,7 @@ public class GraphCreator<T, V> {
     }
 
     /**
-     * Creates a undirected weighted graph
+     * Creates a jgrapht undirected weighted graph
      *
      * @param vertices
      * @param possibleEdges
@@ -52,6 +52,13 @@ public class GraphCreator<T, V> {
         return graph;
     }
 
+    /**
+     * Creates a guava undirected weighted graph
+     *
+     * @param vertices
+     * @param possibleEdges
+     * @return Mutable value graph from guava
+     */
     public MutableValueGraph<V, Integer> create(final Set<V> vertices, final List<T> possibleEdges) {
         final MutableValueGraph<V, Integer> weightedGraph = ValueGraphBuilder.undirected().build();
         for (V file : vertices) {

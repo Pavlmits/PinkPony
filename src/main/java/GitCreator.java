@@ -6,16 +6,16 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
-public class GitCreator {
+class GitCreator {
 
     private GitCreator() {
     }
 
-    public static Git createLocalGitInstance(final String path) throws IOException {
+    static Git createLocalGitInstance(final String path) throws IOException {
         return new Git(openJGitLocalRepository(path));
     }
 
-    public static Git createRemoteGitInstance(final String url, final String localPath) throws GitAPIException {
+    static Git createRemoteGitInstance(final String url, final String localPath) throws GitAPIException {
         return Git.cloneRepository()
                 .setURI(url)
                 .setDirectory(new File(localPath))

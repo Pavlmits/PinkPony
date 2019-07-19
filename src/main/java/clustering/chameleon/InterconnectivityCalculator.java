@@ -1,4 +1,4 @@
-package clustering;
+package clustering.chameleon;
 
 import java.util.ArrayList;
 import java.util.HashMap;

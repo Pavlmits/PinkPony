@@ -13,6 +13,13 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.revwalk.RevCommit;
 
+
+/**
+ * Extracts the commits from git history
+ *
+ * @author pmitsou
+ * @version 19/07/2019
+ */
 public class CommitExtractor {
 
     private final Git git;
@@ -26,10 +33,16 @@ public class CommitExtractor {
         this.commitDifferencesExtractor = commitDifferencesExtractor;
     }
 
+    /**
+     * Extracts the commits
+     * @return a list of domain commits
+     * @throws IOException
+     * @throws GitAPIException
+     */
     public List<Commit> extract() throws IOException, GitAPIException {
         final List<Commit> commitList = new ArrayList<>();
         for (RevCommit revCommit : git.log().all().call()) {
-            final List<DiffEntry> diffs = revCommit.getParents().length > 0 ? commitDifferencesExtractor.extract(git, revCommit, revCommit.getParent(0)) : new ArrayList<>();
+            final List<DiffEntry> diffs = revCommit.getParents().length > 0 ? commitDifferencesExtractor.quickExtract(git, revCommit, revCommit.getParent(0)) : new ArrayList<>();
             commitList.add(commitConverter.convertWithFiles(revCommit, diffs));
         }
         return commitList;
