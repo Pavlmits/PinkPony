@@ -3,19 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5a0fa3e2-b58d-4964-808c-c583f22d2b5f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GitCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GitCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/clustering/ClusteringModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clustering/ClusteringModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/clustering/GraphSplit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clustering/chameleon/GraphSplit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/clustering/InterconnectivityCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clustering/chameleon/InterconnectivityCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/clustering/WatsetClustering.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extractors/CommitDifferencesExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extractors/CommitExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extractors/CommitExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/graph/GraphCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graph/GraphCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/extractors/CommitDifferencesExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/extractors/CommitDifferencesExtractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/filters/FilesFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/filters/FilesFilterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/weightCalculator/CommitWeightCalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/weightCalculator/CommitWeightCalculatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/extractors/CommitExtractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/extractors/CommitExtractor.class" afterDir="false" />
     </list>
@@ -76,14 +63,14 @@
         <counts>
           <entry key="dummy" value="24" />
           <entry key="java" value="15680" />
-          <entry key="txt" value="224" />
+          <entry key="txt" value="250" />
           <entry key="xml" value="142" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="15680" />
-          <entry key="PLAIN_TEXT" value="248" />
+          <entry key="PLAIN_TEXT" value="274" />
           <entry key="XML" value="142" />
         </counts>
       </usages-collector>
@@ -451,7 +438,7 @@
     <property name="SearchEverywhereHistoryKey" value="PartitioningIm&#9;PSI&#9;JAVA://org.jgrapht.alg.interfaces.PartitioningAlgorithm.PartitioningImpl&#10;PartitioningA&#9;PSI&#9;JAVA://org.jgrapht.alg.interfaces.PartitioningAlgorithm&#10;asWe&#9;PSI&#9;JAVA://org.jgrapht.graph.AsWeightedGraph&#10;revcommit&#9;FILE&#9;jar://C:/Localdata/Java/maven_repo/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/revwalk/RevCommit.java&#10;revco&#9;FILE&#9;jar://C:/Localdata/Java/maven_repo/org/eclipse/jgit/org.eclipse.jgit/5.4.0.201906121030-r/org.eclipse.jgit-5.4.0.201906121030-r-sources.jar!/org/eclipse/jgit/revwalk/RevCommit.java&#10;diffentry&#9;PSI&#9;JAVA://org.eclipse.jgit.diff.DiffEntry" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563543482969" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563543751821" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
@@ -587,7 +574,7 @@
       <workItem from="1562961926208" duration="1271000" />
       <workItem from="1563127011104" duration="67000" />
       <workItem from="1563174334841" duration="25518000" />
-      <workItem from="1563263529725" duration="54415000" />
+      <workItem from="1563263529725" duration="54469000" />
     </task>
     <task id="LOCAL-00001" summary="#Issue:1 create file extractor from commits">
       <created>1562844538726</created>
@@ -631,7 +618,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563457749499</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="improve commit extraction">
+      <created>1563543745349</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1563543745349</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -667,7 +661,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153031000" />
+    <option name="totallyTimeSpent" value="153085000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -763,7 +757,8 @@
     <MESSAGE value="#Issue:2 extract weights and first graph attempt" />
     <MESSAGE value="#Issue:2" />
     <MESSAGE value="Add clustering algorithm and some test cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add clustering algorithm and some test cases" />
+    <MESSAGE value="improve commit extraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve commit extraction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
