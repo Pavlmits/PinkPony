@@ -9,16 +9,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
-import org.eclipse.jgit.lib.ObjectReader;
-import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.revwalk.RevTree;
-import org.eclipse.jgit.revwalk.RevWalk;
-import org.eclipse.jgit.treewalk.AbstractTreeIterator;
-import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
 /**
  * Extracts differences from a commit
@@ -27,6 +20,8 @@ import org.eclipse.jgit.treewalk.CanonicalTreeParser;
  * @version 12/07/2019
  */
 public class CommitDifferencesExtractor {
+
+    private static final int MAX_NUMBER_OF_FILES_IN_COMMIT = 15;
 
     @Inject
     public CommitDifferencesExtractor() {
@@ -47,60 +42,23 @@ public class CommitDifferencesExtractor {
     }
 
     /**
-     * Extracts the commits from all branch
-     * @param git
+     * Extracts the commits from all branches
+     *
+     * @param git the git instance of jgit
      * @param oldCommit
      * @param newCommit
-     * @return
+     * @return a list of the differences between  the 2 commits
      * @throws IOException
      */
-    public List<DiffEntry> quickExtract(final Git git, final RevCommit oldCommit, final RevCommit newCommit) throws IOException {
+    public List<DiffEntry> extract(final Git git, final RevCommit oldCommit, final RevCommit newCommit) throws IOException {
         FileOutputStream stdout = new FileOutputStream(FileDescriptor.out);
         try (DiffFormatter diffFormatter = new DiffFormatter(stdout)) {
             diffFormatter.setRepository(git.getRepository());
-            return diffFormatter.scan(oldCommit, newCommit);
+            final List<DiffEntry> diffEntriesList = diffFormatter.scan(oldCommit, newCommit);
+            return diffEntriesList.size() > MAX_NUMBER_OF_FILES_IN_COMMIT ? new ArrayList<>() : diffEntriesList;
+            //return diffEntriesList;
 
         }
-    }
-
-    /**
-     * Extract the changed files in a commit
-     *
-     * @param git
-     * @param oldCommit
-     * @param newCommit
-     * @return
-     * @throws GitAPIException
-     */
-    public List<DiffEntry> extract(final Git git, final RevCommit oldCommit, final RevCommit newCommit) throws GitAPIException {
-        try {
-            return git.diff()
-                    .setOldTree(prepareTreeParser(git.getRepository(), oldCommit))
-                    .setNewTree(prepareTreeParser(git.getRepository(), newCommit))
-                    .call();
-        } catch (GitAPIException e) {
-            System.err.println("CommitDifferencesExtractor : Could not call the Git API");
-            throw e;
-        }
-
-    }
-
-    private AbstractTreeIterator prepareTreeParser(final Repository repository, final RevCommit commit) {
-        // from the commit we can build the tree which allows us to construct the TreeParser
-        //noinspection Duplicates
-        final CanonicalTreeParser treeParser = new CanonicalTreeParser();
-        try (RevWalk walk = new RevWalk(repository)) {
-            final RevTree tree = walk.parseTree(commit.getTree().getId());
-            try (ObjectReader reader = repository.newObjectReader()) {
-                treeParser.reset(reader, tree.getId());
-            }
-
-            walk.dispose();
-        } catch (IOException e) {
-            System.err.println("Could not read from the tree!");
-        }
-        return treeParser;
-
     }
 
 }

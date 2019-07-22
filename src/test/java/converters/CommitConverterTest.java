@@ -17,6 +17,7 @@ import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -82,6 +83,7 @@ public class CommitConverterTest {
     }
 
 
+    @Ignore
     @Test
     public void convertWithFilesTest(){
         final List<DiffEntry> emptyDiffEntries = new ArrayList<>();

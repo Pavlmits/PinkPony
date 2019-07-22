@@ -35,6 +35,7 @@ public class CommitExtractor {
 
     /**
      * Extracts the commits
+     *
      * @return a list of domain commits
      * @throws IOException
      * @throws GitAPIException
@@ -42,8 +43,13 @@ public class CommitExtractor {
     public List<Commit> extract() throws IOException, GitAPIException {
         final List<Commit> commitList = new ArrayList<>();
         for (RevCommit revCommit : git.log().all().call()) {
-            final List<DiffEntry> diffs = revCommit.getParents().length > 0 ? commitDifferencesExtractor.quickExtract(git, revCommit, revCommit.getParent(0)) : new ArrayList<>();
-            commitList.add(commitConverter.convertWithFiles(revCommit, diffs));
+            // check for merge commits
+            if (revCommit.getParentCount() > 1) {
+                final List<DiffEntry> diffs = revCommit.getParents().length > 0 ? commitDifferencesExtractor.extract(git, revCommit, revCommit.getParent(0)) : new ArrayList<>();
+                if (!diffs.isEmpty()) {
+                    commitList.add(commitConverter.convertWithFiles(revCommit, diffs));
+                }
+            }
         }
         return commitList;
     }

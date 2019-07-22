@@ -7,7 +7,7 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import model.Commit;
 
-public class CommitWeightCalculator implements WeightCalculator<Commit, String> {
+public class CommitWeightCalculator implements WeightCalculator<String, Commit> {
 
     @Override
     public Table<String, String, Integer> calculate(final Set<String> vertices, final List<Commit> possibleEdges) {

@@ -31,8 +31,9 @@ public class CommitConverter {
 
     /**
      * Converts revCommit to Domain Commit
-     * @param revCommit
-     * @return Commit
+     *
+     * @param revCommit a commit type from jgit
+     * @return Commit domain
      */
     public Commit convert(final RevCommit revCommit) {
         return modelMapper.map(revCommit, Commit.class);
@@ -40,7 +41,8 @@ public class CommitConverter {
 
     /**
      * Converts a list of revCommits to a list of Domain commits
-     * @param revCommitList
+     *
+     * @param revCommitList a list of commit type from jgit
      * @return List of Commits
      */
     public List<Commit> convertAllWithOutFiles(final List<RevCommit> revCommitList) {
@@ -50,13 +52,15 @@ public class CommitConverter {
     }
 
     /**
-     * Extracts commit with the changed files
-     * @param revCommit
-     * @param diffEntries
+     * Extracts  non-merged commit with the changed files
+     *
+     * @param revCommit   a commit type from jgit
+     * @param diffEntries a list of different entries in jgit
      * @return Commit domain
      */
-    public Commit convertWithFiles(final RevCommit revCommit, final List<DiffEntry> diffEntries){
+    public Commit convertWithFiles(final RevCommit revCommit, final List<DiffEntry> diffEntries) {
         final Commit commit = convert(revCommit);
+        commit.setMerged(revCommit.getParentCount() > 1);
         commit.setPaths(commitDifferencesExtractor.diffEntryToString(diffEntries));
         return commit;
     }

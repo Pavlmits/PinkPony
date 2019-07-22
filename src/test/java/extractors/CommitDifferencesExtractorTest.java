@@ -8,52 +8,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import converters.CommitConverter;
+import model.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
-import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.revwalk.RevTree;
-import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.eclipse.jgit.treewalk.TreeWalk;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.modelmapper.ModelMapper;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+@RunWith(PowerMockRunner.class)
 public class CommitDifferencesExtractorTest {
 
     private CommitDifferencesExtractor commitDifferencesExtractor = new CommitDifferencesExtractor();
 
-    private Git git;
 
-    private List<DiffEntry> subDiffList;
 
-    private List<RevCommit> revCommitSubList;
-
-    @Before
-    public void init() throws IOException, GitAPIException {
-        git = new Git(new FileRepositoryBuilder()
-                .setGitDir(new File(".git"))
-                .readEnvironment() // scan environment GIT_* variables
-                .findGitDir() // scan up the file system tree
-                .build());
-        final Repository repository = git.getRepository();
-        final Iterable<RevCommit> revCommits = git.log().all().call();
-        final List<RevCommit> revCommitsList = Lists.newArrayList(revCommits);
-        revCommitSubList = revCommitsList.subList(0, 2);
-//        final TreeWalk treeWalk = new TreeWalk(repository);
-//        final List<DiffEntry> diffEntry = DiffEntry.scan(treeWalk, false);
-//        subDiffList = diffEntry.subList(0,2);
-    }
-
+    @Ignore
     @Test
+    @PrepareForTest(CommitDifferencesExtractor.class)
     public void diffEntryToStringTest() {
         final List<String> expected = new ArrayList<>();
         expected.add("name.java");
         expected.add("name1.java");
 
         //when
-        final List<String> actual = commitDifferencesExtractor.diffEntryToString(subDiffList);
+        final List<String> actual = commitDifferencesExtractor.diffEntryToString(new ArrayList<>());
 
         //then
         assertEquals(expected.size(), actual.size());
@@ -70,15 +57,4 @@ public class CommitDifferencesExtractorTest {
         assertTrue(actual.isEmpty());
     }
 
-    @Test(expected = GitAPIException.class)
-    public void whenExtractFromNullCommitsExpectExceptionTest() throws GitAPIException {
-        //when
-        commitDifferencesExtractor.extract(git, RevCommit.parse(new byte[0]), RevCommit.parse(new byte[0]));
-    }
-
-    @Test
-    public void prepareTestTree() {
-
-
-    }
 }

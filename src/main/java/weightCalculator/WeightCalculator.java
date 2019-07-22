@@ -5,7 +5,13 @@ import java.util.Set;
 
 import com.google.common.collect.Table;
 
-public interface WeightCalculator<T, S> {
+/**
+ * Creates the weights table
+ *
+ * @param <T> is the type of object that we will extract the edges
+ * @param <V> is the type vertices
+ */
+public interface WeightCalculator<V, T> {
 
-    Table<S, S, Integer> calculate(final Set<S> vertices, final List<T> possibleEdges);
+    Table<V, V, Integer> calculate(final Set<V> vertices, final List<T> possibleEdges);
 }

@@ -25,4 +25,7 @@ public class Commit implements Serializable {
 
     private String fullMessage;
 
+    private boolean isMerged;
+
+
 }
