@@ -17,7 +17,6 @@ import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -83,14 +82,14 @@ public class CommitConverterTest {
     }
 
 
-    @Ignore
+
     @Test
     public void convertWithFilesTest(){
         final List<DiffEntry> emptyDiffEntries = new ArrayList<>();
         final List<String> paths = new ArrayList<>();
         paths.add("ok");
         when(commitDifferencesExtractor.diffEntryToString(emptyDiffEntries)).thenReturn(paths);
-
+        when(commitConverter.convert(revCommitSubList.get(0))).thenReturn(new Commit());
         final Commit actual = commitConverter.convertWithFiles(revCommitSubList.get(0), emptyDiffEntries);
 
         assertEquals(actual.getPaths().get(0), "ok");

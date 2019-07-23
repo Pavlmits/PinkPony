@@ -1,4 +1,4 @@
-package weightCalculator;
+package weightcalculator;
 
 import java.util.List;
 import java.util.Set;

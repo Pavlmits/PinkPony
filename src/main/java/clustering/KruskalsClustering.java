@@ -1,6 +1,7 @@
 package clustering;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 import com.google.common.collect.Table;
@@ -33,6 +34,6 @@ public class KruskalsClustering<V, T> implements Clustering<V> {
 
 
 
-        return null;
+        return Collections.emptyList();
     }
 }

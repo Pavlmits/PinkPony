@@ -62,6 +62,12 @@
             <version>21.0</version>
         </dependency>
         <dependency>
+            <groupId>com.github.nlpub</groupId>
+            <artifactId>watset-java</artifactId>
+            <version>2.0.0-beta14</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.netbeans.api/org-openide-util-lookup -->
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -74,16 +80,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

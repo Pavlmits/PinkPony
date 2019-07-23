@@ -1,15 +1,12 @@
 package clustering;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.mockito.Mockito.when;
 
 import java.util.Collection;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import graph.GraphCreator;
-import org.jgrapht.graph.DefaultWeightedEdge;
-import org.jgrapht.graph.SimpleDirectedGraph;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -31,7 +28,6 @@ public class MarkovSimpleClusteringTest {
     public void clusterTest(){
         final Table<String, String, Integer> table = HashBasedTable.create();
 
-        when(graphCreator.createSimpleWightedGraph(table)).thenReturn(new SimpleDirectedGraph<>(DefaultWeightedEdge.class));
         final Collection<Collection<String>> clusters = clustering.cluster(table);
         assertNotNull(clusters);
 

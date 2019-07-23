@@ -18,8 +18,8 @@ import model.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.modelmapper.ModelMapper;
-import weightCalculator.CommitWeightCalculator;
-import weightCalculator.WeightCalculator;
+import weightcalculator.CommitWeightCalculator;
+import weightcalculator.WeightCalculator;
 
 public class Main {
 
@@ -31,7 +31,7 @@ public class Main {
         final CommitConverter commitConverter = new CommitConverter(new ModelMapper(), new CommitDifferencesExtractor());
         final CommitExtractor commitExtractor = new CommitExtractor(git, commitConverter, new CommitDifferencesExtractor());
         logger.log(Level.INFO,"Extract commits...");
-        final List<Commit> commitList = commitExtractor.extract();
+        final List<Commit> commitList = commitExtractor.extract(true);
         final Set<String> files = new HashSet<>();
         logger.log(Level.INFO,"Filter commits...");
         for (Commit commit : commitList) {
