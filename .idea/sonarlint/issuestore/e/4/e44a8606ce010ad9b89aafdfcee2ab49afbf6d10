@@ -1,9 +1,0 @@
-
-bsquid:CommentedOutCodeLine+"<This block of commented-out lines of code should be removed.(Å±Ôþ
-O
-squid:S106%"9Replace this use of System.out or System.err by a logger.(¨Ô…‹
-asquid:CommentedOutCodeLine&"<This block of commented-out lines of code should be removed.(¨Üò.
-Jsquid:S1481#".Remove this unused "fileTable" local variable.(¾¦‰¾ùÿÿÿÿ
-Fsquid:S1481$"*Remove this unused "graph" local variable.(¬Îíæýÿÿÿÿ
-]squid:S1075"ARefactor your code to get this URI from a customizable parameter.(‰é†Ìøÿÿÿÿ
-Jsquid:S1481"'Remove this unused "pa" local variable.(ó¡Õ¬ûÿÿÿÿ8…Ðù¾¾-
