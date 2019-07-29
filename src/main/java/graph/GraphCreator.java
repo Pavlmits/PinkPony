@@ -3,6 +3,8 @@ package graph;
 import com.google.common.collect.Table;
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
+import edu.uci.ics.jung.graph.Edge;
+import edu.uci.ics.jung.graph.impl.DirectedSparseGraph;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
@@ -35,6 +37,20 @@ public class GraphCreator<V> {
         }
         return graph;
     }
+
+//    public edu.uci.ics.jung.graph.Graph createJungGraph(final Table<V, V, Integer> fileTable){
+//        edu.uci.ics.jung.graph.Graph<V, Edge> graph = new DirectedSparseGraph<>();
+//
+//
+//        for (Table.Cell<V, V, Integer> cell : fileTable.cellSet()) {
+////            DefaultWeightedEdge weightedEdge = graph.addEdge(cell.getRowKey(), cell.getColumnKey());
+//            if (weightedEdge != null && cell.getValue() > 1) {
+//            graph.setEdgeWeight(weightedEdge, cell.getValue());
+//        }
+//    }
+//        return graph;
+//
+//    }
 
     /**
      * Creates a guava undirected weighted graph

@@ -7,11 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import clustering.Clustering;
-import clustering.MarkovSimpleClustering;
+import clustering.ClusteringFactory;
 import com.google.common.collect.Table;
 import converters.CommitConverter;
+import exception.UnknownParameterException;
 import extractors.CommitDifferencesExtractor;
 import extractors.CommitExtractor;
+import filters.ClusterFilter;
 import filters.FilesFilter;
 import graph.GraphCreator;
 import model.Commit;
@@ -23,38 +25,31 @@ import weightcalculator.WeightCalculator;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, GitAPIException {
+    public static void main(String[] args) throws IOException, GitAPIException, UnknownParameterException {
         final Logger logger = Logger.getLogger(Main.class.getName());
-        logger.log(Level.INFO,"Open repository...");
+        logger.log(Level.INFO, "Open repository...");
         final FilesFilter filesFilter = new FilesFilter();
+        final ClusterFilter<String> clusterFilter = new ClusterFilter<>();
         final Git git = GitCreator.createLocalGitInstance(args[0]);
         final CommitConverter commitConverter = new CommitConverter(new ModelMapper(), new CommitDifferencesExtractor());
         final CommitExtractor commitExtractor = new CommitExtractor(git, commitConverter, new CommitDifferencesExtractor());
-        logger.log(Level.INFO,"Extract commits...");
+        logger.log(Level.INFO, "Extract commits...");
         final List<Commit> commitList = commitExtractor.extract(true);
         final Set<String> files = new HashSet<>();
-        logger.log(Level.INFO,"Filter commits...");
+        logger.log(Level.INFO, "Filter commits...");
         for (Commit commit : commitList) {
             commit.setPaths(filesFilter.filterAll(commit.getPaths()));
             files.addAll(commit.getPaths());
         }
-        logger.log(Level.INFO,"Create graph...");
+        logger.log(Level.INFO, "Create graph...");
         final WeightCalculator commitWeightCalculator = new CommitWeightCalculator();
         final Table weightedTable = commitWeightCalculator.calculate(files, commitList);
         final GraphCreator graphCreator = new GraphCreator<String>();
 
-        logger.log(Level.INFO,"Calculate clusters...");
-        Clustering<String> clustering = null;
+        logger.log(Level.INFO, "Calculate clusters...");
+        Clustering clustering = ClusteringFactory.getClustering(args[1], graphCreator);
 
-        if (args[1].equals("mr")) {
-            clustering = new MarkovSimpleClustering<>(2, 2, graphCreator);
-        } else {
-            System.out.println("Wrong number of parameters");
-            System.exit(1);
-        }
-
-        final Collection<Collection<String>> clusters = clustering.cluster(weightedTable);
-        System.out.println("ok");
+        final Collection<Collection<String>> clusters = clusterFilter.filter(clustering.cluster(weightedTable));
         for (final Collection<String> cluster : clusters) {
             cluster.forEach(System.out::println);
             System.out.println("|-------------------|");

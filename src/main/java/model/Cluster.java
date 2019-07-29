@@ -10,6 +10,11 @@ public class Cluster<V> {
 
     private final List<V> clusterList;
 
+    private int density;
+
+    private int weight;
+
+
     public Cluster(final List<V> clusterList) {
         this.clusterList = clusterList;
     }

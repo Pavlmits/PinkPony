@@ -2,20 +2,21 @@ package clustering;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.Set;
 
 import com.google.common.collect.Table;
+import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import graph.GraphCreator;
 import org.jgrapht.Graph;
+import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm;
+import org.jgrapht.alg.spanning.KruskalMinimumSpanningTree;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 /**
- *
- *
+ * Implementation of Kruskal'a algorithm
  * @param <V> is the type of vertices
- * @param <T> is the type of object that we will extract the edges
  */
-public class KruskalsClustering<V, T> implements Clustering<V> {
+public class KruskalsClustering<V> implements Clustering<V> {
 
     private final GraphCreator<V> graphCreator;
 
@@ -28,12 +29,18 @@ public class KruskalsClustering<V, T> implements Clustering<V> {
     }
 
     @Override
-    public Collection<Collection<V>> cluster(final Table<V, V, Integer> fileTable ) {
+    public Collection<Collection<V>> cluster(final Table<V, V, Integer> fileTable) {
         final Graph<V, DefaultWeightedEdge> simpleWightedGraph = graphCreator.createSimpleWightedGraph(fileTable);
-        PriorityQueue<T> edges = new PriorityQueue<>();
-
-
+        final SpanningTreeAlgorithm.SpanningTree<DefaultWeightedEdge> spanningTree = new KruskalMinimumSpanningTree<>(simpleWightedGraph).getSpanningTree();
+        final Set<DefaultWeightedEdge> edges = spanningTree.getEdges();
+        for (final DefaultWeightedEdge edge : edges) {
+            simpleWightedGraph.getEdgeWeight(edge);
+        }
 
         return Collections.emptyList();
+    }
+
+    private void createCluster(V v, int cluster){
+
     }
 }

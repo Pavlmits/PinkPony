@@ -44,7 +44,7 @@ public class CommitExtractor {
         final List<Commit> commitList = new ArrayList<>();
         for (RevCommit revCommit : git.log().all().call()) {
             // check for merge commits
-            if (revCommit.getParentCount() > 1) {
+            if (revCommit.getParentCount() < 2) {
                 final List<DiffEntry> diffs = revCommit.getParents().length > 0 ? commitDifferencesExtractor.extract(git, revCommit, revCommit.getParent(0), hasFilesLimit) : new ArrayList<>();
                 if (!diffs.isEmpty()) {
                     commitList.add(commitConverter.convertWithFiles(revCommit, diffs));

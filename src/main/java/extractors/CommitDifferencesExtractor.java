@@ -19,7 +19,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
  */
 public class CommitDifferencesExtractor {
 
-    private static final int MAX_NUMBER_OF_FILES_IN_COMMIT = 15;
+    private static final int MAX_NUMBER_OF_FILES_IN_COMMIT = 30;
 
     /**
      * Converts the Files at DiffEntry to String

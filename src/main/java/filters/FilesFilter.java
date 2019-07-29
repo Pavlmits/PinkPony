@@ -8,6 +8,7 @@ public class FilesFilter {
     public List<String> filterAll(final List<String> filesList) {
         return filesList.stream()
                 .filter(file -> !file.endsWith(".csv"))
+                .filter(file -> !file.endsWith(".zip"))
                 .filter(file -> !file.endsWith(".txt"))
                 .filter(file -> !file.endsWith(".xml"))
                 .filter(file -> !file.endsWith(".md"))
