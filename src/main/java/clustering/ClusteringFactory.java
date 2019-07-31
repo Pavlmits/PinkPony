@@ -11,8 +11,10 @@ public class ClusteringFactory {
                 return new MarkovSimpleClustering<>(2, 2, graphCreator);
             case "max":
                 return new MaxMaxClustering<>(graphCreator);
-            case  "kr":
-                return  new KruskalsClustering(graphCreator, 3);
+            case "watset":
+                return new WatsetClustering(graphCreator);
+            case "ch":
+                return new ChineseWhispersClustering(graphCreator);
             default:
                 throw new UnknownParameterException("Unknown clustering parameter!");
         }
