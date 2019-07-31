@@ -53,4 +53,5 @@ public class CommitExtractor {
         }
         return commitList;
     }
+
 }

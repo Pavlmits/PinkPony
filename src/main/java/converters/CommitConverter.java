@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import extractors.CommitDifferencesExtractor;
 import model.Commit;
+import model.PathFiles;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.modelmapper.ModelMapper;
@@ -61,7 +62,9 @@ public class CommitConverter {
     public Commit convertWithFiles(final RevCommit revCommit, final List<DiffEntry> diffEntries) {
         final Commit commit = convert(revCommit);
         commit.setMerged(revCommit.getParentCount() > 1);
-        commit.setPaths(commitDifferencesExtractor.diffEntryToString(diffEntries));
+        final PathFiles pathFiles = commitDifferencesExtractor.diffEntryToString(diffEntries);
+        commit.setPaths(pathFiles.getNewPaths());
+        commit.setOldPaths(pathFiles.getOldPaths());
         return commit;
     }
 

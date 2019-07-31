@@ -3,8 +3,6 @@ package graph;
 import com.google.common.collect.Table;
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
-import edu.uci.ics.jung.graph.Edge;
-import edu.uci.ics.jung.graph.impl.DirectedSparseGraph;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
@@ -30,10 +28,13 @@ public class GraphCreator<V> {
             graph.addVertex(file);
         }
         for (Table.Cell<V, V, Integer> cell : fileTable.cellSet()) {
-            DefaultWeightedEdge weightedEdge = graph.addEdge(cell.getRowKey(), cell.getColumnKey());
-            if (weightedEdge != null && cell.getValue() > 1) {
-                graph.setEdgeWeight(weightedEdge, cell.getValue());
+            if (graph.vertexSet().contains(cell.getColumnKey()) && graph.vertexSet().contains(cell.getRowKey())) {
+                DefaultWeightedEdge weightedEdge = graph.addEdge(cell.getRowKey(), cell.getColumnKey());
+                if (weightedEdge != null && cell.getValue() > 1) {
+                    graph.setEdgeWeight(weightedEdge, cell.getValue());
+                }
             }
+
         }
         return graph;
     }

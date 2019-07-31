@@ -17,4 +17,5 @@ public class FilesFilter {
                 .filter(file -> !file.endsWith(".tokens"))
                 .collect(Collectors.toList());
     }
+
 }

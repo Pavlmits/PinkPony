@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.PathFiles;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
@@ -27,12 +28,17 @@ public class CommitDifferencesExtractor {
      * @param filesList
      * @return list of String
      */
-    public List<String> diffEntryToString(final List<DiffEntry> filesList) {
-        final List<String> files = new ArrayList<>();
+    public PathFiles diffEntryToString(final List<DiffEntry> filesList) {
+        final List<String> newPaths = new ArrayList<>();
+        final List<String> oldPaths = new ArrayList<>();
+
         for (DiffEntry entry : filesList) {
-            files.add(entry.getNewPath());
+            newPaths.add(entry.getNewPath());
+            if (!entry.getNewPath().equals(entry.getOldPath())) {
+                oldPaths.add(entry.getOldPath());
+            }
         }
-        return files;
+        return new PathFiles(newPaths, oldPaths);
     }
 
     /**

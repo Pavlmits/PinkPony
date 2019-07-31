@@ -17,4 +17,7 @@ public class ClusteringFactory {
                 throw new UnknownParameterException("Unknown clustering parameter!");
         }
     }
+
+    private ClusteringFactory() {
+    }
 }

@@ -11,10 +11,14 @@ public class CommitWeightCalculator implements WeightCalculator<String, Commit> 
 
     @Override
     public Table<String, String, Integer> calculate(final Set<String> vertices, final List<Commit> possibleEdges) {
+        //Table that I wll save the result
         final Table<String, String, Integer> fileTable = HashBasedTable.create();
+        // the set of vertices contains the files
         for (final String file : vertices) {
+            //possible edges are the commits list
             for (final Commit commit : possibleEdges) {
                 if (commit.getPaths().contains(file)) {
+                    //commit.getPaths() returns the files that touched in the current commit
                     for (String s : commit.getPaths()) {
                         if (!file.equals(s)) {
                             if (!fileTable.contains(file, s)) {
@@ -27,6 +31,7 @@ public class CommitWeightCalculator implements WeightCalculator<String, Commit> 
                 }
             }
         }
+        System.out.println("Weighted table has calculated");
         return fileTable;
     }
 }

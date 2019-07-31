@@ -23,6 +23,8 @@ public class Commit implements Serializable {
 
     private List<String> paths;
 
+    private List<String> oldPaths;
+
     private String fullMessage;
 
     private boolean isMerged;

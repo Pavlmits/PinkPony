@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.PathFiles;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -22,21 +23,21 @@ public class CommitDifferencesExtractorTest {
         expected.add("name1.java");
 
         //when
-        final List<String> actual = commitDifferencesExtractor.diffEntryToString(new ArrayList<>());
+        final PathFiles actual = commitDifferencesExtractor.diffEntryToString(new ArrayList<>());
 
         //then
-        assertEquals(expected.size(), actual.size());
-        assertEquals(expected.get(0), actual.get(0));
+        assertEquals(expected.size(), actual.getNewPaths().size());
+        assertEquals(expected.get(0), actual.getNewPaths().get(0));
         assertEquals(expected.get(1), expected.get(1));
     }
 
     @Test
     public void diffEntryToStringEmptyListGivenTest() {
         //when
-        final List<String> actual = commitDifferencesExtractor.diffEntryToString(new ArrayList<>());
+        final PathFiles actual = commitDifferencesExtractor.diffEntryToString(new ArrayList<>());
 
         //then
-        assertTrue(actual.isEmpty());
+        assertTrue(actual.getNewPaths().isEmpty());
     }
 
 }

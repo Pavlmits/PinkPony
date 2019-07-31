@@ -11,6 +11,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import extractors.CommitDifferencesExtractor;
 import model.Commit;
+import model.PathFiles;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
@@ -88,7 +89,8 @@ public class CommitConverterTest {
         final List<DiffEntry> emptyDiffEntries = new ArrayList<>();
         final List<String> paths = new ArrayList<>();
         paths.add("ok");
-        when(commitDifferencesExtractor.diffEntryToString(emptyDiffEntries)).thenReturn(paths);
+        final PathFiles pathFiles = new PathFiles(paths, new ArrayList<>());
+        when(commitDifferencesExtractor.diffEntryToString(emptyDiffEntries)).thenReturn(pathFiles);
         when(commitConverter.convert(revCommitSubList.get(0))).thenReturn(new Commit());
         final Commit actual = commitConverter.convertWithFiles(revCommitSubList.get(0), emptyDiffEntries);
 
