@@ -22,6 +22,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.jgrapht.Graph;
 import org.modelmapper.ModelMapper;
+import visualization.ClassDiagramGenerator;
 import visualization.GraphVisualizer;
 import weightcalculator.CommitWeightCalculator;
 import weightcalculator.WeightCalculator;
@@ -66,6 +67,7 @@ public class Main {
         final Graph simpleWightedGraph = graphCreator.createSimpleWightedGraph(weightedTable);
 //        final GraphVisualizer<String> graphVisualizer = new GraphVisualizer<>();
 //        graphVisualizer.visualize(simpleWightedGraph);
+        ClassDiagramGenerator.generate();
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
     }
