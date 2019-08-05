@@ -2,6 +2,22 @@ package clustering;
 
 import static org.junit.Assert.*;
 
+import exception.UnknownParameterException;
+import graph.GraphCreator;
+import org.junit.Test;
+
 public class ClusteringFactoryTest {
 
+
+
+    @Test(expected = UnknownParameterException.class)
+    public void whenEmptyStringThenTrowExceptionTest() throws UnknownParameterException {
+        ClusteringFactory.getClustering("", new GraphCreator());
+    }
+
+    @Test
+    public void whenValidStringPassThenReturnRightInstance() throws UnknownParameterException {
+        final Clustering clustering = ClusteringFactory.getClustering("mr", new GraphCreator());
+        assertSame(clustering.getClass(), MarkovSimpleClustering.class);
+    }
 }

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -20,10 +21,8 @@ import graph.GraphCreator;
 import model.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.jgrapht.Graph;
 import org.modelmapper.ModelMapper;
 import visualization.ClassDiagramGenerator;
-import visualization.GraphVisualizer;
 import weightcalculator.CommitWeightCalculator;
 import weightcalculator.WeightCalculator;
 
@@ -57,17 +56,15 @@ public class Main {
         logger.log(Level.INFO, "Calculate clusters...");
         Clustering clustering = ClusteringFactory.getClustering(args[1], graphCreator);
         final boolean applyFilter = Boolean.parseBoolean(args[2]);
-        final Collection<Collection<String>> clusters = applyFilter ? clusterFilter.filter(clustering.cluster(weightedTable)): clustering.cluster(weightedTable);
+        final Collection<Collection<String>> clusters = applyFilter ? clusterFilter.filter(clustering.cluster(weightedTable)) : clustering.cluster(weightedTable);
         for (final Collection<String> cluster : clusters) {
             cluster.forEach(System.out::println);
             System.out.println("|-------------------|");
 
         }
-        long endTime   = System.nanoTime();
-        final Graph simpleWightedGraph = graphCreator.createSimpleWightedGraph(weightedTable);
-//        final GraphVisualizer<String> graphVisualizer = new GraphVisualizer<>();
-//        graphVisualizer.visualize(simpleWightedGraph);
-        ClassDiagramGenerator.generate();
+        long endTime = System.nanoTime();
+        final List<Collection<String>> clusterList = new ArrayList<>(clusters);
+        ClassDiagramGenerator.runPlu();
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
     }
