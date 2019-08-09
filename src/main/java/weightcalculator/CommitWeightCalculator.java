@@ -32,6 +32,18 @@ public class CommitWeightCalculator implements WeightCalculator<String, Commit> 
             }
         }
         System.out.println("Weighted table has calculated");
+        return cutSmallWeights(fileTable);
+    }
+
+    private  Table<String, String, Integer> cutSmallWeights(final Table<String, String, Integer> table){
+        final Table<String, String, Integer> fileTable = HashBasedTable.create();
+        for(Table.Cell cell: table.cellSet()){
+            int value = (int) cell.getValue();
+            //TODO change number of files
+            if(value > 1){
+                fileTable.put(cell.getRowKey().toString(), cell.getColumnKey().toString(),(Integer) cell.getValue());
+            }
+        }
         return fileTable;
     }
 }

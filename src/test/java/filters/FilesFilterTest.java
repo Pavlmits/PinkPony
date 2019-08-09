@@ -1,6 +1,7 @@
 package filters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,45 @@ public class FilesFilterTest {
         final List<String> actual = filesFilter.filterAll(fileList);
 
         assertEquals(0, actual.size());
+    }
+
+    @Test
+    public void filterBasedOnPackageEmptyList() {
+        final List<String> fileList = new ArrayList<>();
+        final String regex = "Hello";
+
+        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regex);
+
+        assertTrue(actual.isEmpty());
+    }
+
+    @Test
+    public void filterBasedOnPackageEmptyRegex() {
+        final List<String> fileList = new ArrayList<>();
+        final String regex = "";
+        fileList.add("hello");
+        fileList.add("ok");
+
+        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regex);
+
+        assertEquals(2, actual.size());
+
+    }
+
+    @Test
+    public void filterBasedOnPackageTest(){
+        final List<String> fileList = new ArrayList<>();
+        final String regex = "pav";
+        fileList.add("pav/1");
+        fileList.add("pav2");
+        fileList.add("arisl");
+
+        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regex);
+
+        assertEquals(2 ,actual.size());
+        assertEquals("pav/1", actual.get(0));
+
+
     }
 
 

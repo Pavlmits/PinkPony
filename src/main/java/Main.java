@@ -17,12 +17,17 @@ import extractors.CommitDifferencesExtractor;
 import extractors.CommitExtractor;
 import filters.ClusterFilter;
 import filters.FilesFilter;
+import git.GitCreator;
 import graph.GraphCreator;
 import model.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.modelmapper.ModelMapper;
+import util.FileExporter;
 import visualization.ClassDiagramGenerator;
+import visualization.DotFormatGenerator;
+import visualization.JavascriptToolInputGenerator;
+import visualization.graphviz.GraphVizVisualizer;
 import weightcalculator.CommitWeightCalculator;
 import weightcalculator.WeightCalculator;
 
@@ -45,7 +50,11 @@ public class Main {
         logger.log(Level.INFO, "Filter commits...");
         for (Commit commit : commitList) {
             commit.setPaths(filesFilter.filterAll(commit.getPaths()));
-            files.addAll(commit.getPaths());
+            if(args.length >= 4 ){
+                files.addAll(filesFilter.filterBasedOnPackage(commit.getPaths(), args[3]));
+            }else{
+                files.addAll(commit.getPaths());
+            }
             files.removeAll(commit.getOldPaths());
         }
         logger.log(Level.INFO, "Create graph...");
@@ -62,9 +71,18 @@ public class Main {
             System.out.println("|-------------------|");
 
         }
+        FileExporter.export(clusters, "clusters.txt");
         long endTime = System.nanoTime();
         final List<Collection<String>> clusterList = new ArrayList<>(clusters);
-        ClassDiagramGenerator.runPlu();
+        System.out.println(clusterList.size());
+        ClassDiagramGenerator.generate(clusterList);
+        final DotFormatGenerator dotFormatGenerator = new DotFormatGenerator();
+        //dotFormatGenerator.subgraph(clusterList, weightedTable);
+        dotFormatGenerator.generate(weightedTable);
+        final GraphVizVisualizer graphVizVisualizer = new GraphVizVisualizer(dotFormatGenerator);
+        //graphVizVisualizer.generateGraphViz(weightedTable);
+        final JavascriptToolInputGenerator javascriptToolInputGenerator = new JavascriptToolInputGenerator();
+        javascriptToolInputGenerator.generate(files, weightedTable);
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
     }

@@ -20,4 +20,9 @@ public class ClusteringFactoryTest {
         final Clustering clustering = ClusteringFactory.getClustering("mr", new GraphCreator());
         assertSame(clustering.getClass(), MarkovSimpleClustering.class);
     }
+
+    @Test(expected = UnknownParameterException.class)
+    public void whenInvalidStringThenTrowExceptionTest() throws UnknownParameterException {
+        ClusteringFactory.getClustering("pavlina", new GraphCreator());
+    }
 }

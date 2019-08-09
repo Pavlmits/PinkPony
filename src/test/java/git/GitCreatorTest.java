@@ -1,8 +1,11 @@
+package git;
+
 import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
 
+import git.GitCreator;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand;

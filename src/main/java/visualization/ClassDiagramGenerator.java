@@ -1,24 +1,23 @@
 package visualization;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.List;
 
+import net.sourceforge.plantuml.FileFormat;
+import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
+import util.FileExporter;
 
 
 public class ClassDiagramGenerator {
 
     public static void generate(final List<Collection<String>> clusters) throws IOException {
-        final File newFolder = new File("diagrams");
-        newFolder.mkdirs();
-        final OutputStream out = new FileOutputStream("diagrams/diagram.png");
         String source = "@startuml\nscale 1\n";
         int count = 0;
         for (final Collection<String> cluster : clusters) {
@@ -26,7 +25,14 @@ public class ClassDiagramGenerator {
             for (final String s : cluster) {
                 int lastIndex = s.lastIndexOf("/");
                 int indexOfFullStop = s.lastIndexOf(".");
-                final String substring = s.substring(lastIndex + 1, indexOfFullStop);
+                String substring;
+                try{
+                  substring  = s.substring(lastIndex + 1, indexOfFullStop);
+
+                }catch (StringIndexOutOfBoundsException e){
+                    System.out.println(s);
+                    substring = "";
+                }
                 if (!substring.isBlank()) {
                     source += "class " + substring + "\n";
 
@@ -34,16 +40,20 @@ public class ClassDiagramGenerator {
             }
             count++;
             source += "}\n";
-            if (count % 4 == 0) {
-                source += "newpage\n";
-            }
+//            if (count % 4 == 0) {
+//                source += "newpage\n";
+//            }
         }
         source += "@enduml\n";
         PrintWriter writer = new PrintWriter("uml.txt", "UTF-8");
         writer.println(source);
         writer.close();
         SourceStringReader reader = new SourceStringReader(source);
-        String desc = reader.generateImage(out);
+        final ByteArrayOutputStream os = new ByteArrayOutputStream();
+        String desc = reader.generateImage(os, new FileFormatOption(FileFormat.SVG));
+        os.close();
+        final String svg = new String(os.toByteArray(), Charset.forName("UTF-8"));
+        FileExporter.exportSvg(svg);
     }
 
     public static void runPlu() throws IOException {
