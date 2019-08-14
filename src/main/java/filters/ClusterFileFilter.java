@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.Cluster;
+import model.Package;
 import org.apache.commons.lang3.StringUtils;
 
 public class ClusterFileFilter {
@@ -21,15 +21,15 @@ public class ClusterFileFilter {
         return filteredFiles;
     }
 
-    public Set<Cluster> filterAndReturnClusters(final Set<String> files, List<String> targetPrefixes){
-        final Set<Cluster> clusters = new HashSet<>();
+    public Set<Package> filterAndReturnClusters(final Set<String> files, List<String> targetPrefixes){
+        final Set<Package> packageSet = new HashSet<>();
         for (final String targetPrefix : targetPrefixes) {
             final List<String> targetFiles = files.stream()
                     .filter(file -> file.startsWith(targetPrefix))
                     .collect(Collectors.toList());
-            clusters.add(new Cluster(targetPrefix, targetFiles));
+            packageSet.add(new Package(targetPrefix, targetFiles));
         }
 
-        return clusters;
+        return packageSet;
     }
 }

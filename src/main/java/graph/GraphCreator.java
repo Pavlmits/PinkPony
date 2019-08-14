@@ -28,9 +28,11 @@ public class GraphCreator<V> {
             graph.addVertex(file);
         }
         for (Table.Cell<V, V, Integer> cell : fileTable.cellSet()) {
-            if (graph.vertexSet().contains(cell.getColumnKey()) && graph.vertexSet().contains(cell.getRowKey())) {
+
+            //TODO cell.getValue()  fix the condition
+            if (graph.vertexSet().contains(cell.getColumnKey()) && graph.vertexSet().contains(cell.getRowKey()) && cell.getValue() > 1) {
                 DefaultWeightedEdge weightedEdge = graph.addEdge(cell.getRowKey(), cell.getColumnKey());
-                if (weightedEdge != null && cell.getValue() > 1) {
+                if (weightedEdge != null) {
                     graph.setEdgeWeight(weightedEdge, cell.getValue());
                 }
             }

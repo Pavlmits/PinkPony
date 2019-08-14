@@ -9,10 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import model.Cluster;
+import model.Package;
 import org.junit.Test;
 
-public class ClusterFileFilterTest {
+public class PackageFileFilterTest {
 
     private final ClusterFileFilter clusterFileFilter = new ClusterFileFilter();
 
@@ -47,7 +47,7 @@ public class ClusterFileFilterTest {
         final Set<String> files = new HashSet<>();
         final List<String> targetPrefixes = new ArrayList<>();
 
-        final Set<Cluster> actual = clusterFileFilter.filterAndReturnClusters(files, targetPrefixes);
+        final Set<Package> actual = clusterFileFilter.filterAndReturnClusters(files, targetPrefixes);
 
         assertTrue(actual.isEmpty());
 
@@ -65,7 +65,7 @@ public class ClusterFileFilterTest {
         targetPrefixes.add("Pavlina");
         targetPrefixes.add("Xaris");
 
-        final Set<Cluster> actual = clusterFileFilter.filterAndReturnClusters(files, targetPrefixes);
+        final Set<Package> actual = clusterFileFilter.filterAndReturnClusters(files, targetPrefixes);
 
         assertFalse(actual.isEmpty());
         assertEquals(2, actual.size());

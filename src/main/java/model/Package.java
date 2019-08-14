@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Cluster {
+public class Package {
 
     private String name;
 
@@ -17,8 +17,6 @@ public class Cluster {
 
     @Override
     public String toString() {
-        return "Cluster{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

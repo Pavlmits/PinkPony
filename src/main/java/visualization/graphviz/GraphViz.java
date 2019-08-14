@@ -66,10 +66,10 @@ import java.io.InputStreamReader;
  * can specify the representation type of your graph: dot, neato, fdp, sfdp, twopi, circo
  * @version v0.5.1, 2013/03/18 (March) -- Patch of Juan Hoyos (Mac support)
  * @version v0.5, 2012/04/24 (April) -- Patch of Abdur Rahman (OS detection + start subgraph +
- * read config file)
+ * readFromFile config file)
  * @version v0.4, 2011/02/05 (February) -- Patch of Keheliya Gallaba is added. Now you
  * can specify the type of the output file: gif, dot, fig, pdf, ps, svg, png, etc.
- * @version v0.3, 2010/11/29 (November) -- Windows support + ability to read the graph from a text file
+ * @version v0.3, 2010/11/29 (November) -- Windows support + ability to readFromFile the graph from a text file
  * @version v0.2, 2010/07/22 (July) -- bug fix
  * @version v0.1, 2003/12/04 (December) -- first release
  * @author  Laszlo Szathmary (<a href="jabba.laci@gmail.com">jabba.laci@gmail.com</a>)

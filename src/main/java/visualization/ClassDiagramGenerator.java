@@ -17,7 +17,7 @@ import util.FileExporter;
 
 public class ClassDiagramGenerator {
 
-    public static void generate(final List<Collection<String>> clusters) throws IOException {
+    public static void generate(final List<Collection<String>> clusters, final String filename) throws IOException {
         String source = "@startuml\nscale 1\n";
         int count = 0;
         for (final Collection<String> cluster : clusters) {
@@ -45,7 +45,7 @@ public class ClassDiagramGenerator {
 //            }
         }
         source += "@enduml\n";
-        PrintWriter writer = new PrintWriter("uml.txt", "UTF-8");
+        PrintWriter writer = new PrintWriter(filename, "UTF-8");
         writer.println(source);
         writer.close();
         SourceStringReader reader = new SourceStringReader(source);

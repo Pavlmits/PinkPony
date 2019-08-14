@@ -43,8 +43,10 @@ public class FilesFilterTest {
     public void filterBasedOnPackageEmptyList() {
         final List<String> fileList = new ArrayList<>();
         final String regex = "Hello";
+        final List<String> regexs = new ArrayList<>();
+        regexs.add(regex);
 
-        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regex);
+        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regexs);
 
         assertTrue(actual.isEmpty());
     }
@@ -53,10 +55,13 @@ public class FilesFilterTest {
     public void filterBasedOnPackageEmptyRegex() {
         final List<String> fileList = new ArrayList<>();
         final String regex = "";
+        final List<String> regexs = new ArrayList<>();
+        regexs.add(regex);
+
         fileList.add("hello");
         fileList.add("ok");
 
-        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regex);
+        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regexs);
 
         assertEquals(2, actual.size());
 
@@ -66,11 +71,13 @@ public class FilesFilterTest {
     public void filterBasedOnPackageTest(){
         final List<String> fileList = new ArrayList<>();
         final String regex = "pav";
+        final List<String> regexs = new ArrayList<>();
+        regexs.add(regex);
         fileList.add("pav/1");
         fileList.add("pav2");
         fileList.add("arisl");
 
-        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regex);
+        final List<String> actual = filesFilter.filterBasedOnPackage(fileList, regexs);
 
         assertEquals(2 ,actual.size());
         assertEquals("pav/1", actual.get(0));

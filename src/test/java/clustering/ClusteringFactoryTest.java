@@ -16,9 +16,15 @@ public class ClusteringFactoryTest {
     }
 
     @Test
-    public void whenValidStringPassThenReturnRightInstance() throws UnknownParameterException {
+    public void whenMarkovStringPassThenReturnMarkovInstance() throws UnknownParameterException {
         final Clustering clustering = ClusteringFactory.getClustering("mr", new GraphCreator());
         assertSame(clustering.getClass(), MarkovSimpleClustering.class);
+    }
+
+    @Test
+    public void whenMaxStringPassThenReturnMaxInstance() throws UnknownParameterException {
+        final Clustering clustering = ClusteringFactory.getClustering("max", new GraphCreator());
+        assertSame(clustering.getClass(), MaxMaxClustering.class);
     }
 
     @Test(expected = UnknownParameterException.class)

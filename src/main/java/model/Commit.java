@@ -29,5 +29,8 @@ public class Commit implements Serializable {
 
     private boolean isMerged;
 
-
+    public Commit(final String name, final List<String> paths) {
+        this.name = name;
+        this.paths = paths;
+    }
 }

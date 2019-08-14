@@ -35,9 +35,9 @@ public class GraphCreatorTest {
         final Graph<String, DefaultWeightedEdge> actual = graphCreator.createSimpleWightedGraph(table);
 
 
-        assertEquals(5, actual.edgeSet().size());
+        assertEquals(3, actual.edgeSet().size());
         assertEquals(4, actual.vertexSet().size());
-        assertEquals(1, actual.getAllEdges("a", "b").size());
+        assertEquals(0, actual.getAllEdges("a", "b").size());
 
 
     }

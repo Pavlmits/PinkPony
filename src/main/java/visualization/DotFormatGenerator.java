@@ -10,17 +10,19 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.Table;
+import model.Package;
 
-public class DotFormatGenerator {
+public class DotFormatGenerator<V> {
 
-    public void generate(final Table<String, String, Integer> clusters) throws FileNotFoundException, UnsupportedEncodingException {
+    public void generate(final Table<V, V, Integer> clusters, final String folder) throws FileNotFoundException, UnsupportedEncodingException {
         final StringBuilder generatedText = new StringBuilder();
         generatedText.append("digraph {\nratio=0.3\nsize=\"10,7\";\n");
-        for (Table.Cell<String, String, Integer> cell : clusters.cellSet()) {
+        generatedText.append(" label=\"").append(folder).append("\";");
+        for (Table.Cell<V, V, Integer> cell : clusters.cellSet()) {
             if (cell.getValue() > 2) {
                 try {
-                    String row = cell.getRowKey().substring(cell.getRowKey().lastIndexOf('/') + 1, cell.getRowKey().lastIndexOf('.'));
-                    String column = cell.getColumnKey().substring(cell.getColumnKey().lastIndexOf('/') + 1, cell.getColumnKey().lastIndexOf('.'));
+                    String row = cell.getRowKey().toString().substring(cell.getRowKey().toString().lastIndexOf('/') + 1, cell.getRowKey().toString().lastIndexOf('.'));
+                    String column = cell.getColumnKey().toString().substring(cell.getColumnKey().toString().lastIndexOf('/') + 1, cell.getColumnKey().toString().lastIndexOf('.'));
                     //TODO find better way to remove the spaces
                     if (!row.contains(" ") || !column.contains(" ")) {
                         generatedText.append(row)
@@ -36,54 +38,38 @@ public class DotFormatGenerator {
             }
         }
         generatedText.append("}");
-        PrintWriter writer = new PrintWriter("graphViz.dot", "UTF-8");
+        PrintWriter writer = new PrintWriter(folder + "/graphViz.dot", "UTF-8");
         writer.println(generatedText);
         writer.close();
     }
 
-    public void generateSubclusters(final Table<String, String, Integer> table, final List<Collection<String>> clusterList) {
-        final StringBuilder generatedText = new StringBuilder();
-        generatedText.append("digraph {\nratio=0.3\nsize=\"10,7\";\n");
-        for (Table.Cell<String, String, Integer> cell : table.cellSet()) {
-            if (cell.getValue() > 2) {
-                try {
-                    String row = cell.getRowKey().substring(cell.getRowKey().lastIndexOf('/') + 1, cell.getRowKey().lastIndexOf('.'));
-                    String column = cell.getColumnKey().substring(cell.getColumnKey().lastIndexOf('/') + 1, cell.getColumnKey().lastIndexOf('.'));
-                    generatedText.append(row)
-                            .append(" -> ")
-                            .append(column)
-                            .append(";\n");
-                } catch (StringIndexOutOfBoundsException e) {
+//    public void generateForPackage(final Collection<Collection<Package>> clusters, final String folder) {
+//        final StringBuilder generatedText = new StringBuilder();
+//        generatedText.append("digraph {\nratio=0.3\nsize=\"10,7\";\n");
+//        generatedText.append(" label=\"").append(folder).append("\";");
+//        for (Table.Cell<V, V, Integer> cell : clusters.cellSet()) {
+//        }
+//    }
 
-                }
-
-            }
-        }
-        generatedText.append("}");
-
-    }
-
-    public void subgraph(final List<Collection<String>> clusterList, final Table<String, String, Integer> table) throws FileNotFoundException, UnsupportedEncodingException {
+    public void subgraphCluster(final List<Collection<V>> clusterListOfCollections, final String folder) throws FileNotFoundException, UnsupportedEncodingException {
         final StringBuilder generatedText = new StringBuilder();
         generatedText.append("digraph G {\n");
         int count = 0;
-        for (final Collection<String> strings : clusterList) {
+        for (final Collection<V> cluster : clusterListOfCollections) {
             generatedText.append("subgraph cluster").append(count).append("{\n");
-            final List<String> stringList = new ArrayList<>(strings);
+            final List<V> clustersList = new ArrayList<>(cluster);
             final Set<String> connections = new HashSet<>();
-            for (int i = 0; i < stringList.size(); i++) {
-                for (int j = 0; j < stringList.size(); j++) {
-                    final String first = stringList.get(i).substring(stringList.get(i).lastIndexOf('/') + 1, stringList.get(i).lastIndexOf('.'));
-                    final String second = stringList.get(j).substring(stringList.get(j).lastIndexOf('/') + 1, stringList.get(j).lastIndexOf('.'));
-                    connections.add(first + " -> " + second + "\n");
-                }
+            for (V aClustersList : clustersList) {
+                final String item = aClustersList.toString().substring(aClustersList.toString().lastIndexOf('/') + 1);
+                connections.add(item + ";\n");
+
             }
             connections.forEach(s -> generatedText.append(s));
             generatedText.append("}\n");
             count++;
         }
         generatedText.append("}");
-        PrintWriter writer = new PrintWriter("graphVizSubGraph.dot", "UTF-8");
+        PrintWriter writer = new PrintWriter(folder + "/graphVizSubGraph.dot", "UTF-8");
         writer.println(generatedText);
         writer.close();
 

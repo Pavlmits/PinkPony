@@ -10,7 +10,7 @@ import com.google.common.collect.Table;
 public class JavascriptToolInputGenerator {
 
 
-    public void generate(final Set<String> files, final Table<String, String, Integer> table) throws FileNotFoundException, UnsupportedEncodingException {
+    public void generate(final Set<String> files, final Table<String, String, Integer> table, final String folder) throws FileNotFoundException, UnsupportedEncodingException {
         final StringBuilder generatedText = new StringBuilder();
         generatedText.append("{\n\"nodes\":\n[\n");
         for (final String file : files) {
@@ -31,7 +31,7 @@ public class JavascriptToolInputGenerator {
         generatedText.append("]\n");
         generatedText.append("}");
 
-        PrintWriter writer = new PrintWriter("jsonFile.json", "UTF-8");
+        PrintWriter writer = new PrintWriter(folder + "/jsonFile.json", "UTF-8");
         writer.println(generatedText);
         writer.close();
 
