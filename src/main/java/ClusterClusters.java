@@ -25,7 +25,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.modelmapper.ModelMapper;
 import util.ClusterReader;
-import util.FileExporter;
+import util.FileHandler;
 import util.FilesPrefixListChecker;
 import visualization.graphviz.GraphVizVisualizer;
 import weightcalculator.ClusterWeightCalculator;
@@ -40,11 +40,11 @@ public class ClusterClusters {
         final String clusteringMethod = args[1];
         final String packageName = args[2];
 
-        final List<String> clustersPaths = new ArrayList<>();
-        for (int i = 2; i < args.length; i++) {
-            clustersPaths.addAll(ClusterReader.readFromPackageName(args[i], repo));
-        }
-//        final List<String> clustersPaths = ClusterReader.readFromFile(packageName);
+//        final List<String> clustersPaths = new ArrayList<>();
+//        for (int i = 2; i < args.length; i++) {
+//            clustersPaths.addAll(ClusterReader.readFromPackageName(args[i], repo));
+//        }
+        final List<String> clustersPaths = ClusterReader.readFromFile(packageName);
         final Logger logger = Logger.getLogger(Main.class.getName());
         logger.log(Level.INFO, "Open repository...");
         final Git git = GitCreator.createLocalGitInstance(repo);
@@ -73,7 +73,7 @@ public class ClusterClusters {
         logger.log(Level.INFO, "Create graph...");
         final WeightCalculator weightCalculator = new ClusterWeightCalculator();
         final GraphCreator graphCreator = new GraphCreator<Package>();
-        final Table weightedTable = weightCalculator.calculate(initialPackages, commitList);
+        final Table<Package,Package, Integer> weightedTable = weightCalculator.calculate(initialPackages, commitList);
         Clustering clustering = ClusteringFactory.getClustering(clusteringMethod, graphCreator);
         final Collection<Collection<Package>> clusters = clustering.cluster(weightedTable);
         for (final Collection<Package> aPackage : clusters) {
@@ -81,14 +81,14 @@ public class ClusterClusters {
             System.out.println("|-------------------|");
 
         }
-        final String folder = FileExporter.generateFolderName(repo);
-        FileExporter.createFolder(folder);
-        FileExporter<Package> fileExporter = new FileExporter<>();
+        final String folder = FileHandler.generateFolderName(repo);
+        FileHandler.createFolder(folder);
+        FileHandler<Package> fileExporter = new FileHandler<>();
         fileExporter.export(clusters, folder + "/clusterClusters.txt");
         long endTime = System.nanoTime();
         final GraphVizVisualizer<Package> graphVizVisualizer = new GraphVizVisualizer();
 
-
+        fileExporter.exportTable(weightedTable, folder + "/table.txt");
         graphVizVisualizer.generate(weightedTable, folder);
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");

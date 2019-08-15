@@ -3,19 +3,18 @@ package visualization;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Set;
 
 import com.google.common.collect.Table;
 
-public class JavascriptToolInputGenerator {
+public class JavascriptToolInputGenerator<V> {
 
 
-    public void generate(final Set<String> files, final Table<String, String, Integer> table, final String folder) throws FileNotFoundException, UnsupportedEncodingException {
+    public void generate(final Table<V, V, Integer> table, final String folder) throws FileNotFoundException, UnsupportedEncodingException {
         final StringBuilder generatedText = new StringBuilder();
         generatedText.append("{\n\"nodes\":\n[\n");
-        for (final String file : files) {
-            generatedText.append("{\n\"nodeId\":\"").append(file).append("\",\n");
-            generatedText.append("\"name\": \"").append(file).append("\",\n");
+        for (final V item : table.rowKeySet()) {
+            generatedText.append("{\n\"nodeId\":\"").append(item).append("\",\n");
+            generatedText.append("\"name\": \"").append(item).append("\",\n");
             generatedText.append("\"size\": \"").append(1).append("\"\n");
             generatedText.append("},\n");
         }

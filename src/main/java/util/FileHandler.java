@@ -5,13 +5,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import org.apache.commons.io.FileUtils;
 
-public class FileExporter<V> {
+public class FileHandler<V> {
 
     public void export(final Collection<Collection<V>> data, final String fileName) throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter(fileName, "UTF-8");
@@ -20,6 +27,25 @@ public class FileExporter<V> {
             writer.println("----------------------------");
         }
         writer.close();
+    }
+
+    public void exportTable(final Table<V, V, Integer> table, final String fileName) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+        for (Table.Cell cell : table.cellSet()) {
+            writer.println(cell.getRowKey() + " " + cell.getColumnKey() + " " + cell.getValue());
+        }
+        writer.close();
+    }
+
+    public Table<String, String, Integer> readTable(final String fileName) throws IOException {
+        final Table<String, String, Integer> table = HashBasedTable.create();
+        final Path path = Paths.get(fileName);
+        final List<String> lines = Files.lines(path).collect(Collectors.toList());
+        for (final String line : lines) {
+            final String[] array = line.split(" ");
+            table.put(array[0], array[1], Integer.valueOf(array[2]));
+        }
+        return table;
     }
 
 
@@ -54,4 +80,5 @@ public class FileExporter<V> {
         }
 
     }
+
 }

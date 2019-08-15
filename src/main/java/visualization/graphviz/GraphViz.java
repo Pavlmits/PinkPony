@@ -354,7 +354,7 @@ public class GraphViz
     }
 
     /**
-     * Takes the cluster or subgraph id as input parameter and returns a string
+     * Takes the run or subgraph id as input parameter and returns a string
      * that is used to start a subgraph.
      * @return A string to open a subgraph.
      */

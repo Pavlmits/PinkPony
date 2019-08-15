@@ -16,17 +16,26 @@ import exception.UnknownParameterException;
 import filters.ClusterFileFilter;
 import filters.FilesFilter;
 import graph.GraphCreator;
+import model.ClusteringResult;
 import model.Commit;
 import model.Package;
 import util.ClusterReader;
 import util.FilesPrefixListChecker;
-import weightcalculator.ClusterWeightCalculator;
 import weightcalculator.WeightCalculator;
 
 public class PackageLevel implements ClusteringLevel<Package> {
 
+    private final GraphCreator graphCreator;
+
+    private final WeightCalculator weightCalculator;
+
+    public PackageLevel(final GraphCreator graphCreator, final WeightCalculator weightCalculator) {
+        this.graphCreator = graphCreator;
+        this.weightCalculator = weightCalculator;
+    }
+
     @Override
-    public Collection<Collection<Package>> cluster(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws IOException, UnknownParameterException {
+    public ClusteringResult<Package> run(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws IOException, UnknownParameterException {
         final Logger logger = Logger.getLogger(PackageLevel.class.getName());
 
         final Set<String> files = new HashSet<>();
@@ -60,8 +69,6 @@ public class PackageLevel implements ClusteringLevel<Package> {
 
 
         logger.log(Level.INFO, "Create graph...");
-        final WeightCalculator weightCalculator = new ClusterWeightCalculator();
-        final GraphCreator graphCreator = new GraphCreator<Package>();
         final Table weightedTable = weightCalculator.calculate(initialPackages, commitList);
         Clustering clustering = ClusteringFactory.getClustering(clusteringAlgo, graphCreator);
         logger.log(Level.INFO, "Calculate clusters...");
@@ -71,6 +78,6 @@ public class PackageLevel implements ClusteringLevel<Package> {
             System.out.println("|-------------------|");
 
         }
-        return clusters;
+        return new ClusteringResult(weightedTable, clusters, files);
     }
 }

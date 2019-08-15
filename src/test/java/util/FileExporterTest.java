@@ -8,12 +8,13 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collection;
 
+import com.google.common.collect.Table;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class FileExporterTest {
 
-    private FileExporter<String> fileExporter = new FileExporter<>();
+    private FileHandler<String> fileExporter = new FileHandler<>();
 
     @Ignore
     @Test
@@ -31,9 +32,16 @@ public class FileExporterTest {
     public void generateFolderNameTest(){
         final String path = "C:\\dev\\ojAlgo\\.git";
 
-        final String actual = FileExporter.generateFolderName(path);
+        final String actual = FileHandler.generateFolderName(path);
 
         assertEquals("ojAlgo", actual);
+    }
+
+    @Test
+    public void readTableTest() throws IOException {
+        final Table<String, String, Integer> table = fileExporter.readTable("table.txt");
+
+        assertTrue(!table.isEmpty());
     }
 
 }

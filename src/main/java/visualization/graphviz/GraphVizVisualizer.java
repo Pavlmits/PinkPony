@@ -44,7 +44,7 @@ public class GraphVizVisualizer<V> {
         generatedText.append("digraph G {\n");
         int count = 0;
         for (final Collection<V> cluster : clusterListOfCollections) {
-            generatedText.append("subgraph cluster").append(count).append("{\n");
+            generatedText.append("subgraph run").append(count).append("{\n");
             final List<V> clustersList = new ArrayList<>(cluster);
             final Set<String> connections = new HashSet<>();
             for (V acluster : clustersList) {

@@ -16,7 +16,9 @@ public class ClusterWeightCalculator implements WeightCalculator<Package, Commit
     public Table<Package, Package, Integer> calculate(final Set<Package> vertices, final List<Commit> possibleEdges) {
         final Table<Package, Package, Integer> clusterTable = HashBasedTable.create();
         final List<Package> verticesList = new ArrayList<>(vertices);
+        int count = 0;
         for (final Commit commit : possibleEdges) {
+            System.out.println(count);
             for (int i = 0; i < verticesList.size(); i++) {
                 for (int j = i + 1; j < verticesList.size(); j++) {
                     final int weightTemp = calculateBetweenClusterWeight(verticesList.get(i), verticesList.get(j), commit);
@@ -27,6 +29,7 @@ public class ClusterWeightCalculator implements WeightCalculator<Package, Commit
                     }
                 }
             }
+            count++;
         }
 
         return clusterTable;

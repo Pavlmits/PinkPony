@@ -12,7 +12,7 @@ import java.util.List;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
-import util.FileExporter;
+import util.FileHandler;
 
 
 public class ClassDiagramGenerator {
@@ -53,7 +53,7 @@ public class ClassDiagramGenerator {
         String desc = reader.generateImage(os, new FileFormatOption(FileFormat.SVG));
         os.close();
         final String svg = new String(os.toByteArray(), Charset.forName("UTF-8"));
-        FileExporter.exportSvg(svg);
+        FileHandler.exportSvg(svg);
     }
 
     public static void runPlu() throws IOException {
