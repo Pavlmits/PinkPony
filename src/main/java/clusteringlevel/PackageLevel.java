@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,19 +19,16 @@ import graph.GraphCreator;
 import model.Commit;
 import model.Package;
 import util.ClusterReader;
-import util.FileExporter;
 import util.FilesPrefixListChecker;
-import visualization.DotFormatGenerator;
-import visualization.graphviz.GraphVizVisualizer;
 import weightcalculator.ClusterWeightCalculator;
 import weightcalculator.WeightCalculator;
 
-public class PackageLevel implements ClusteringLevel {
+public class PackageLevel implements ClusteringLevel<Package> {
 
     @Override
-    public void cluster(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws IOException, UnknownParameterException {
+    public Collection<Collection<Package>> cluster(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws IOException, UnknownParameterException {
         final Logger logger = Logger.getLogger(PackageLevel.class.getName());
-        long startTime = System.nanoTime();
+
         final Set<String> files = new HashSet<>();
         final FilesFilter filesFilter = new FilesFilter();
 
@@ -75,20 +71,6 @@ public class PackageLevel implements ClusteringLevel {
             System.out.println("|-------------------|");
 
         }
-        final String folder = FileExporter.generateFolderName(repo);
-        FileExporter<Package> fileExporter = new FileExporter<>();
-        FileExporter.createFolder(folder);
-        fileExporter.export(clusters, folder + "/clusterClusters.txt");
-        long endTime = System.nanoTime();
-        System.out.println(clusters.size());
-        final DotFormatGenerator dotFormatGenerator = new DotFormatGenerator();
-        dotFormatGenerator.generate(weightedTable, folder);
-        final GraphVizVisualizer<Package> graphVizVisualizer = new GraphVizVisualizer();
-
-        graphVizVisualizer.generateGraphVizForCluster(weightedTable, folder);
-        dotFormatGenerator.subgraphCluster(new ArrayList<>(clusters), folder);
-        long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
-        System.out.println(totalTime + " seconds");
-
+        return clusters;
     }
 }

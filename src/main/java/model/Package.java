@@ -13,10 +13,13 @@ public class Package {
 
     private String name;
 
+    //private String folderName;
+
     private List<String> files;
+
 
     @Override
     public String toString() {
-        return name;
+        return /*folderName + "/" +*/ name;
     }
 }

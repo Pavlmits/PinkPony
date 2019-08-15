@@ -38,6 +38,7 @@ public class FileExporter<V> {
         return "not Valid";
     }
 
+    //TODO fix problem recreation folder
     public static void createFolder(final String folderName) {
         File f = new File(folderName);
         final boolean mkdir = f.mkdir();

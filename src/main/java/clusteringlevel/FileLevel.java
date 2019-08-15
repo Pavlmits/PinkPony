@@ -17,18 +17,16 @@ import filters.FilesFilter;
 import graph.GraphCreator;
 import model.Commit;
 import util.FileExporter;
-import visualization.DotFormatGenerator;
 import visualization.JavascriptToolInputGenerator;
 import visualization.graphviz.GraphVizVisualizer;
 import weightcalculator.CommitWeightCalculator;
 import weightcalculator.WeightCalculator;
 
-public class FileLevel implements ClusteringLevel {
+public class FileLevel implements ClusteringLevel<String> {
 
     @Override
-    public void cluster(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws IOException, UnknownParameterException {
+    public Collection<Collection<String>> cluster(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws IOException, UnknownParameterException {
         final Logger logger = Logger.getLogger(FileLevel.class.getName());
-        long startTime = System.nanoTime();
         final Set<String> files = new HashSet<>();
         final FilesFilter filesFilter = new FilesFilter();
 
@@ -62,14 +60,13 @@ public class FileLevel implements ClusteringLevel {
         fileExporter.export(clusters, folder + "/clusters.txt");
         long endTime = System.nanoTime();
         System.out.println(clusters.size());
-        final DotFormatGenerator dotFormatGenerator = new DotFormatGenerator();
-        dotFormatGenerator.generate(weightedTable, folder);
         final GraphVizVisualizer graphVizVisualizer = new GraphVizVisualizer();
 
-        graphVizVisualizer.generateGraphViz(weightedTable, folder);
+        graphVizVisualizer.generate(weightedTable, folder);
         final JavascriptToolInputGenerator javascriptToolInputGenerator = new JavascriptToolInputGenerator();
         javascriptToolInputGenerator.generate(files, weightedTable, folder);
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
+        return clusters;
     }
 }

@@ -1,13 +1,14 @@
 package weightcalculator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import model.Package;
 import model.Commit;
+import model.Package;
 
 public class ClusterWeightCalculator implements WeightCalculator<Package, Commit> {
 
@@ -33,14 +34,6 @@ public class ClusterWeightCalculator implements WeightCalculator<Package, Commit
 
 
     private int calculateBetweenClusterWeight(final Package package1, final Package package2, Commit commit) {
-        for (String s1 : package1.getFiles()) {
-            for (String s2 : package2.getFiles()) {
-                if (commit.getPaths().contains(s1) && commit.getPaths().contains(s2)) {
-                    return 1;
-                }
-            }
-
-        }
-        return 0;
+        return !Collections.disjoint(package1.getFiles(), commit.getPaths()) && !Collections.disjoint(package2.getFiles(), commit.getPaths()) ? 1 : 0;
     }
 }

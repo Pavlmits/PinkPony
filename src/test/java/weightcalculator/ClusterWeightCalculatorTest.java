@@ -13,17 +13,17 @@ import model.Commit;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PackageWeightCalculatorTest {
+public class ClusterWeightCalculatorTest {
 
-    private ClusterWeightCalculator clusterWeightCalculator;
+    private ClusterWeightCalculator packageWeightCalculator;
 
     @Before
     public void setup(){
-        clusterWeightCalculator = new ClusterWeightCalculator();
+        packageWeightCalculator = new ClusterWeightCalculator();
     }
 
     @Test
-    public void calculateBetweenClusterWeightTest() {
+    public void calculateTest() {
         final Set<Package> packageSet = new HashSet<>();
         final List<String> files1 = new ArrayList<>();
         final List<String> files2 = new ArrayList<>();
@@ -74,7 +74,7 @@ public class PackageWeightCalculatorTest {
         commitList.add(new Commit("2", paths2));
         commitList.add(new Commit("3", paths3));
 
-        final Table<Package, Package, Integer> actual = clusterWeightCalculator.calculate(packageSet, commitList);
+        final Table<Package, Package, Integer> actual = packageWeightCalculator.calculate(packageSet, commitList);
 
         assertEquals(3,actual.size());
         assertEquals(2 ,actual.get(package1, package2).intValue());

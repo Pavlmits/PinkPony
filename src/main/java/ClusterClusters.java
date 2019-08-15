@@ -19,15 +19,14 @@ import filters.ClusterFileFilter;
 import filters.FilesFilter;
 import git.GitCreator;
 import graph.GraphCreator;
-import model.Package;
 import model.Commit;
+import model.Package;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.modelmapper.ModelMapper;
 import util.ClusterReader;
 import util.FileExporter;
 import util.FilesPrefixListChecker;
-import visualization.DotFormatGenerator;
 import visualization.graphviz.GraphVizVisualizer;
 import weightcalculator.ClusterWeightCalculator;
 import weightcalculator.WeightCalculator;
@@ -41,11 +40,11 @@ public class ClusterClusters {
         final String clusteringMethod = args[1];
         final String packageName = args[2];
 
-        //final List<String> clustersPaths = new ArrayList<>();
-//        for(int i = 2; i< args.length; i++){
-//            clustersPaths.addAll(ClusterReader.readFromPackageName(args[i], repo));
-//        }
-        final List<String> clustersPaths = ClusterReader.readFromFile(packageName);
+        final List<String> clustersPaths = new ArrayList<>();
+        for (int i = 2; i < args.length; i++) {
+            clustersPaths.addAll(ClusterReader.readFromPackageName(args[i], repo));
+        }
+//        final List<String> clustersPaths = ClusterReader.readFromFile(packageName);
         final Logger logger = Logger.getLogger(Main.class.getName());
         logger.log(Level.INFO, "Open repository...");
         final Git git = GitCreator.createLocalGitInstance(repo);
@@ -87,13 +86,10 @@ public class ClusterClusters {
         FileExporter<Package> fileExporter = new FileExporter<>();
         fileExporter.export(clusters, folder + "/clusterClusters.txt");
         long endTime = System.nanoTime();
-        final DotFormatGenerator dotFormatGenerator = new DotFormatGenerator();
-        dotFormatGenerator.generate(weightedTable, folder);
         final GraphVizVisualizer<Package> graphVizVisualizer = new GraphVizVisualizer();
 
 
-        graphVizVisualizer.generateGraphVizForCluster(weightedTable, folder);
-        dotFormatGenerator.subgraphCluster(new ArrayList<>(clusters), folder);
+        graphVizVisualizer.generate(weightedTable, folder);
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
 
