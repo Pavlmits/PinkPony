@@ -11,7 +11,7 @@ To run the Pink pony application you have to download the [recently released ver
 * `max`: [MaxMax] is a soft clustering algorithm for undirected graphs;
 * `watset`: [Watset] is a *local-global meta-algorithm* for fuzzy graph clustering.
 
-The implementation of the algorithms used from [Watset](https://github.com/nlpub/watset-java)
+The implementation of the algorithms used from [Watset project](https://github.com/nlpub/watset-java)
 
 #### Level of clustering
 Depends the investigation that you want to do, the application provides two kind of options.
@@ -19,12 +19,39 @@ Depends the investigation that you want to do, the application provides two kind
 * `file` : Suggest functional clusters on file level. 
 * `module` : Suggest functional clusters on module level.
 
+This will suggest functional clusters from files.
 ```bash
 $ java -jar pinkpony.jar path\to\.git file max
 ```
-The following command will 
+This will suggest modules under the spesific module
+<pre>
+moduleName
+    file1
+    file2
+    ...
+    fileN
+</pre>
 ```bash
-$ java -jar pinkpony.jar path\to\.git module mr Mod1/sub1 Mod1/sub2 Mod2/sub1  
+$ java -jar pinkpony.jar path\to\.git file max moduleName
+```
+
+The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm
+<pre>
+mod1
+    subMod1 
+    sudMod2 
+    subMod3 
+mod2 
+    subMod1 
+    sudMod2 
+mod3 
+    subMod1 
+    sudMod2 
+    subMod3 
+    subMod4 
+ </pre>
+```bash
+$ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
 ```
 
 
