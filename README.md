@@ -24,6 +24,8 @@ This will suggest functional clusters from files.
 $ java -jar pinkpony.jar path\to\.git file max
 ```
 This will suggest modules under the spesific module
+##### Exaple
+###### input
 <pre>
 moduleName
     file1
@@ -31,25 +33,54 @@ moduleName
     ...
     fileN
 </pre>
+
+###### output 
+<pre>
+    cluster1
+        file1
+        file3
+    cluster2
+        file6
+        file89
+        ...
+    clusterN
+        file2
+        file15
+</pre>
 ```bash
 $ java -jar pinkpony.jar path\to\.git file max moduleName
 ```
 
-The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm
+The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm.
+##### Exaple
+###### input 
 <pre>
 mod1
     subMod1 
     sudMod2 
     subMod3 
 mod2 
-    subMod1 
-    sudMod2 
-mod3 
-    subMod1 
-    sudMod2 
-    subMod3 
     subMod4 
+    sudMod5 
+mod3 
+    subMod6 
+    sudMod7 
+    subMod8 
+    subMod9 
  </pre>
+###### output
+<pre> 
+cluster1        
+    subMod3
+    subMod9
+    subMod8
+cluster2
+    subMod4
+    subMod5
+    subMod1
+...
+    
+    
 ```bash
 $ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
 ```
