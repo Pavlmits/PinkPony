@@ -19,11 +19,11 @@ Depends the investigation that you want to do, the application provides two kind
 * `file` : Suggest functional clusters on file level. 
 * `module` : Suggest functional clusters on module level.
 
-This will suggest functional clusters from files.
+* This will suggest functional clusters from files.
 ```bash
 $ java -jar pinkpony.jar path\to\.git file max
 ```
-This will suggest modules under the spesific module
+* This will suggest modules under the spesific module
 ##### Exaple
 ###### input
 <pre>
@@ -51,7 +51,7 @@ moduleName
 $ java -jar pinkpony.jar path\to\.git file max moduleName
 ```
 
-The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm.
+* The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm.
 ##### Exaple
 ###### input 
 <pre>
