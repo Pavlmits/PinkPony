@@ -79,7 +79,7 @@ cluster2
     subMod5
     subMod1
 ...
-    
+</pre>
     
 ```bash
 $ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
