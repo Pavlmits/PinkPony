@@ -16,12 +16,17 @@ The implementation of the algorithms used from [Watset](https://github.com/nlpub
 #### Level of clustering
 Depends the investigation that you want to do, the application provides two kind of options.
 
-* `file` : Suggect functional clusters on file level. 
-* `module` : Suggect functional clusters on module level.
+* `file` : Suggest functional clusters on file level. 
+* `module` : Suggest functional clusters on module level.
 
 ```bash
-java -jar pinkpony.jar path\to\.git file max
+$ java -jar pinkpony.jar path\to\.git file max
 ```
+The following command will 
+```bash
+$ java -jar pinkpony.jar path\to\.git module mr Mod1/sub1 Mod1/sub2 Mod2/sub1  
+```
+
 
 [Markov Clustering]: https://doi.org/10.1137/040608635
 [Chinese Whispers]: https://dl.acm.org/citation.cfm?id=1654774
