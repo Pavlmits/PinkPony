@@ -2,6 +2,10 @@
 Pink pony is a free software command-line application that suggest functional clusters based on the common changes on git.  
 > <i> What changes together should be also together </i>
 
+## Result
+The application produce 2 files.    
+    * `cluster.txt`: contains the clusters
+    * `graphViz.dot`: a .dot file to visualize the co-change graph
 ## Usage
 To run the Pink pony application you have to download the [recently released version](https://github.com/Pavlmits/PinkPony/releases/latest).
 
