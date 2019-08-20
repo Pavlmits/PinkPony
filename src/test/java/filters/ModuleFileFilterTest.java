@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -55,7 +56,7 @@ public class ModuleFileFilterTest {
 
     @Test
     public void filterAndReturn2ClustersTest() {
-        final Set<String> files = new HashSet<>();
+        final Set<String> files = new LinkedHashSet<>();
         final List<String> targetPrefixes = new ArrayList<>();
 
         files.add("Pavlina/pa");
@@ -70,8 +71,8 @@ public class ModuleFileFilterTest {
 
         assertFalse(actual.isEmpty());
         assertEquals(2, actual.size());
-        assertEquals("Pavlina", actualList.get(0).getName());
-        assertEquals(2, actualList.get(0).getFiles().size());
+        assertEquals("Xaris", actualList.get(0).getName());
+        assertEquals(1, actualList.get(0).getFiles().size());
 
     }
 
