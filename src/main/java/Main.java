@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -12,10 +10,11 @@ import converters.CommitConverter;
 import exception.UnknownParameterException;
 import extractors.CommitDifferencesExtractor;
 import extractors.CommitExtractor;
+import extractors.ModuleExtractor;
 import git.GitCreator;
 import model.ClusteringResult;
 import model.Commit;
-import model.Package;
+import model.Module;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.modelmapper.ModelMapper;
@@ -27,15 +26,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException, GitAPIException, UnknownParameterException {
         long startTime = System.nanoTime();
+        //parse arguments
         final String repo = args[0];
         final String clusteringLevel = args[1];
         final String clusteringAlgo = args[2];
-        final List<String> packs;
-        if (args.length > 3 && !args[3].equals("all")) {
-            packs = new ArrayList<>(Arrays.asList(args).subList(3, args.length));
-        } else {
-            packs = new ArrayList<>();
-        }
+        final List<String> packs = ModuleExtractor.extract(args, repo);
+
         final Logger logger = Logger.getLogger(Main.class.getName());
         logger.log(Level.INFO, "Open repository...");
         final Git git = GitCreator.createLocalGitInstance(repo);
@@ -49,7 +45,7 @@ public class Main {
         final ClusteringResult clusteringResult = clustering.run(repo, commitList, packs, clusteringAlgo);
 
         final String folder = FileHandler.generateFolderName(repo);
-        FileHandler<Package> fileExporter = new FileHandler<>();
+        FileHandler<Module> fileExporter = new FileHandler<>();
         FileHandler.createFolder(folder);
         fileExporter.export(clusteringResult.getClusters(), folder + "/clusterClusters.txt");
         long endTime = System.nanoTime();
@@ -57,8 +53,8 @@ public class Main {
 
         final JavascriptToolInputGenerator javascriptToolInputGenerator = new JavascriptToolInputGenerator();
         javascriptToolInputGenerator.generate(clusteringResult.getWeightTable(), folder);
-        final GraphVizVisualizer<Package> graphVizVisualizer = new GraphVizVisualizer();
-        graphVizVisualizer.generate(clusteringResult.getWeightTable(), folder);
+        final GraphVizVisualizer<Module> graphVizVisualizer = new GraphVizVisualizer();
+        graphVizVisualizer.generate(clusteringResult.getWeightTable(), folder + "/graphVizFile.dot");
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
 

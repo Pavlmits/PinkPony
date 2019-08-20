@@ -29,6 +29,17 @@ public class FileHandler<V> {
         writer.close();
     }
 
+    public void exportWithClusterPrefix(final Collection<Collection<V>> data, final String fileName) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+        int count = 1;
+        for (final Collection<V> cluster : data) {
+            final int finalCount = count;
+            cluster.forEach(c -> writer.println("Cluster" + finalCount + "/" + c));
+            count++;
+        }
+        writer.close();
+    }
+
     public void exportTable(final Table<V, V, Integer> table, final String fileName) throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter(fileName, "UTF-8");
         for (Table.Cell cell : table.cellSet()) {
@@ -37,7 +48,7 @@ public class FileHandler<V> {
         writer.close();
     }
 
-    public Table<String, String, Integer> readTable(final String fileName) throws IOException {
+    public  static Table<String, String, Integer> readTable(final String fileName) throws IOException {
         final Table<String, String, Integer> table = HashBasedTable.create();
         final Path path = Paths.get(fileName);
         final List<String> lines = Files.lines(path).collect(Collectors.toList());

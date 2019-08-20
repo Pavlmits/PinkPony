@@ -8,7 +8,7 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-public class PackageFilterTest {
+public class ModuleFilterTest {
 
 
     private ClusterFilter<String> clusterFilter = new ClusterFilter<>();

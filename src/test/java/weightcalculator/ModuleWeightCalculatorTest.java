@@ -1,30 +1,27 @@
 package weightcalculator;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.Table;
-import model.Package;
 import model.Commit;
-import org.junit.Before;
+import model.Module;
 import org.junit.Test;
 
-public class ClusterWeightCalculatorTest {
+public class ModuleWeightCalculatorTest {
 
-    private ClusterWeightCalculator packageWeightCalculator;
+    private ModuleWeightCalculator moduleWeightCalculator = new ModuleWeightCalculator();
 
-    @Before
-    public void setup(){
-        packageWeightCalculator = new ClusterWeightCalculator();
-    }
 
     @Test
     public void calculateTest() {
-        final Set<Package> packageSet = new HashSet<>();
+        final Set<Module> moduleSet = new LinkedHashSet<>();
         final List<String> files1 = new ArrayList<>();
         final List<String> files2 = new ArrayList<>();
         final List<String> files3 = new ArrayList<>();
@@ -63,23 +60,23 @@ public class ClusterWeightCalculatorTest {
         paths3.add("NM/2");
 
 
-        final Package package1 = new Package("Pav", files1);
-        final Package package2 = new Package("Xa", files2);
-        final Package package3 = new Package("NM", files3);
+        final Module module1 = new Module("Pav", files1);
+        final Module module2 = new Module("Xa", files2);
+        final Module module3 = new Module("NM", files3);
 
-        packageSet.add(package1);
-        packageSet.add(package2);
-        packageSet.add(package3);
+        moduleSet.add(module1);
+        moduleSet.add(module2);
+        moduleSet.add(module3);
         commitList.add(new Commit("1", paths1));
         commitList.add(new Commit("2", paths2));
         commitList.add(new Commit("3", paths3));
 
-        final Table<Package, Package, Integer> actual = packageWeightCalculator.calculate(packageSet, commitList);
+        final Table<Module, Module, Integer> actualTable = moduleWeightCalculator.calculate(moduleSet, commitList);
 
-        assertEquals(3,actual.size());
-        assertEquals(2 ,actual.get(package1, package2).intValue());
-        assertEquals(1, actual.get(package1, package3).intValue());
-        assertEquals(2, actual.get(package2, package3).intValue());
+        assertEquals(3, actualTable.size());
+        assertThat(actualTable.get(module1, module2)).isEqualTo(2);
+        assertThat(actualTable.get(module1, module3)).isEqualTo(1);
+        assertThat(actualTable.get(module2, module3)).isEqualTo(2);
     }
 
 }

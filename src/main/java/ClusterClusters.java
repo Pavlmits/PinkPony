@@ -1,97 +1,50 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import clustering.Clustering;
 import clustering.ClusteringFactory;
 import com.google.common.collect.Table;
-import converters.CommitConverter;
 import exception.UnknownParameterException;
-import extractors.CommitDifferencesExtractor;
-import extractors.CommitExtractor;
-import filters.ClusterFileFilter;
-import filters.FilesFilter;
-import git.GitCreator;
+import filters.GraphEdgeFilter;
 import graph.GraphCreator;
-import model.Commit;
-import model.Package;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.modelmapper.ModelMapper;
-import util.ClusterReader;
 import util.FileHandler;
-import util.FilesPrefixListChecker;
 import visualization.graphviz.GraphVizVisualizer;
-import weightcalculator.ClusterWeightCalculator;
-import weightcalculator.WeightCalculator;
 
 public class ClusterClusters {
 
-    public static void main(String[] args) throws IOException, GitAPIException, UnknownParameterException {
-        long startTime = System.nanoTime();
-        //parse args
-        final String repo = args[0];
-        final String clusteringMethod = args[1];
-        final String packageName = args[2];
+    public static void main(String[] args) throws IOException, UnknownParameterException {
+        final Table<String, String, Integer> table = FileHandler.readTable("table1.txt");
+        final Clustering max = ClusteringFactory.getClustering("max", new GraphCreator());
+        final Clustering mr = ClusteringFactory.getClustering("mr", new GraphCreator());
+        final Clustering watset = ClusteringFactory.getClustering("watset", new GraphCreator());
+        final Clustering ch = ClusteringFactory.getClustering("ch", new GraphCreator());
 
-//        final List<String> clustersPaths = new ArrayList<>();
-//        for (int i = 2; i < args.length; i++) {
-//            clustersPaths.addAll(ClusterReader.readFromPackageName(args[i], repo));
-//        }
-        final List<String> clustersPaths = ClusterReader.readFromFile(packageName);
-        final Logger logger = Logger.getLogger(Main.class.getName());
-        logger.log(Level.INFO, "Open repository...");
-        final Git git = GitCreator.createLocalGitInstance(repo);
-        final FilesFilter filesFilter = new FilesFilter();
-        final ClusterFileFilter clusterFileFilter = new ClusterFileFilter();
-        final CommitConverter commitConverter = new CommitConverter(new ModelMapper(), new CommitDifferencesExtractor());
-        final CommitExtractor commitExtractor = new CommitExtractor(git, commitConverter, new CommitDifferencesExtractor());
-        logger.log(Level.INFO, "Extract commits...");
-        final List<Commit> commitList = commitExtractor.extract(true);
-        logger.log(Level.INFO, commitList.size() + " Commits extracted");
-        final Set<String> files = new HashSet<>();
-        logger.log(Level.INFO, "Filter commits...");
-        final List<Commit> commitsToBeRemoved = new ArrayList<>();
-        for (Commit commit : commitList) {
-            if (FilesPrefixListChecker.isInTheList(commit.getPaths(), clustersPaths)) {
-                commit.setPaths(filesFilter.filterAll(commit.getPaths()));
-                files.addAll(commit.getPaths());
-                files.removeAll(commit.getOldPaths());
-            } else {
-                commitsToBeRemoved.add(commit);
-            }
-        }
-        commitList.removeAll(commitsToBeRemoved);
-        final Set<Package> initialPackages = clusterFileFilter.filterAndReturnClusters(files, clustersPaths);
+        final Collection<Collection<String>> clusterMax = max.cluster(table);
+        final Collection<Collection<String>> clusterMr = mr.cluster(table);
+        final Collection<Collection<String>> clusterWatset = watset.cluster(table);
+        final Collection<Collection<String>> clusterCh = ch.cluster(table);
 
-        logger.log(Level.INFO, "Create graph...");
-        final WeightCalculator weightCalculator = new ClusterWeightCalculator();
-        final GraphCreator graphCreator = new GraphCreator<Package>();
-        final Table<Package,Package, Integer> weightedTable = weightCalculator.calculate(initialPackages, commitList);
-        Clustering clustering = ClusteringFactory.getClustering(clusteringMethod, graphCreator);
-        final Collection<Collection<Package>> clusters = clustering.cluster(weightedTable);
-        for (final Collection<Package> aPackage : clusters) {
-            aPackage.forEach(System.out::println);
-            System.out.println("|-------------------|");
+        final GraphEdgeFilter<String> graphEdgeFilter = new GraphEdgeFilter<>();
+        final Table<String, String, Integer> filteredTableMr = graphEdgeFilter.removeEdges(table, clusterMr);
+        final Table<String, String, Integer> filteredTableMax = graphEdgeFilter.removeEdges(table, clusterMax);
+        final Table<String, String, Integer> filteredTableWatset = graphEdgeFilter.removeEdges(table, clusterWatset);
+        final Table<String, String, Integer> filteredTableCh = graphEdgeFilter.removeEdges(table, clusterCh);
 
-        }
-        final String folder = FileHandler.generateFolderName(repo);
-        FileHandler.createFolder(folder);
-        FileHandler<Package> fileExporter = new FileHandler<>();
-        fileExporter.export(clusters, folder + "/clusterClusters.txt");
-        long endTime = System.nanoTime();
-        final GraphVizVisualizer<Package> graphVizVisualizer = new GraphVizVisualizer();
 
-        fileExporter.exportTable(weightedTable, folder + "/table.txt");
-        graphVizVisualizer.generate(weightedTable, folder);
-        long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
-        System.out.println(totalTime + " seconds");
+        final FileHandler<String> fileHandler = new FileHandler<>();
+        fileHandler.export(clusterMax, "data/max.txt");
+        fileHandler.export(clusterMr, "data/markov.txt");
+        fileHandler.export(clusterWatset, "data/watset.txt");
+        fileHandler.export(clusterCh, "data/chineseWhispers.txt");
+        fileHandler.exportWithClusterPrefix(clusterMr, "data/markovC.csv");
+        fileHandler.exportWithClusterPrefix(clusterMax, "data/maxC.csv");
+        fileHandler.exportWithClusterPrefix(clusterWatset, "data/watsetC.csv");
+        fileHandler.exportWithClusterPrefix(clusterCh, "data/chineseC.csv");
+        final GraphVizVisualizer<String> graphVizVisualizer = new GraphVizVisualizer();
+        graphVizVisualizer.generate(filteredTableMax, "data/max.dot");
+        graphVizVisualizer.generate(filteredTableMr, "data/mr.dot");
+        graphVizVisualizer.generate(filteredTableWatset, "data/watset.dot");
+        graphVizVisualizer.generate(filteredTableCh, "data/ch.dot");
 
     }
 }

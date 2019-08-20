@@ -13,13 +13,13 @@ public class ClusteringLevelFactoryTest {
     }
 
     @Test
-    public void whenMarkovStringPassThenReturnMarkovInstance() throws UnknownParameterException {
-        final ClusteringLevel level = ClusteringLevelFactory.getClusteringLevel("pack");
-        assertSame(level.getClass(), PackageLevel.class);
+    public void whenMarkovStringPassThenReturnModuleInstance() throws UnknownParameterException {
+        final ClusteringLevel level = ClusteringLevelFactory.getClusteringLevel("module");
+        assertSame(level.getClass(), ModuleLevel.class);
     }
 
     @Test
-    public void whenMaxStringPassThenReturnMaxInstance() throws UnknownParameterException {
+    public void whenMaxStringPassThenReturnFileInstance() throws UnknownParameterException {
         final ClusteringLevel level = ClusteringLevelFactory.getClusteringLevel("file");
         assertSame(level.getClass(), FileLevel.class);
     }

@@ -9,17 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Package {
+public class Module {
 
     private String name;
-
-    //private String folderName;
 
     private List<String> files;
 
 
     @Override
     public String toString() {
-        return /*folderName + "/" +*/ name;
+        return name;
     }
 }

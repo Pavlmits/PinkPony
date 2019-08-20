@@ -54,7 +54,7 @@ public class FileLevel implements ClusteringLevel<String> {
         logger.log(Level.INFO, "Calculate clusters...");
         Clustering clustering = ClusteringFactory.getClustering(clusteringAlgo, graphCreator);
         final Collection<Collection<String>> clusters = clustering.cluster(weightedTable);
-        for (final Collection<String> cluster : clusters) {
+        for (final Collection cluster : clusters) {
             cluster.forEach(System.out::println);
             System.out.println("|-------------------|");
 
@@ -62,4 +62,5 @@ public class FileLevel implements ClusteringLevel<String> {
 
         return new ClusteringResult<>(weightedTable, clusters, files);
     }
+
 }

@@ -10,6 +10,7 @@ import filters.FilesFilter;
 import graph.GraphCreator;
 import model.Commit;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -61,7 +62,7 @@ public class FileLevelTest {
         commitList.add(new Commit("3", paths3));
     }
 
-
+    @Ignore("I have to finish it")
     @Test
     public void whenPackagesAreEmptyListTest() throws UnknownParameterException {
         when(filesFilter.filterAll(paths1)).thenReturn(paths1);

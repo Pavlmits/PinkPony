@@ -10,10 +10,7 @@ import java.util.Set;
 import com.google.common.collect.Table;
 import model.Commit;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
 public class CommitWeightCalculatorTest {
 
     private final CommitWeightCalculator commitWeightCalculator = new CommitWeightCalculator();

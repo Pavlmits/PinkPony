@@ -8,35 +8,33 @@ import java.util.Set;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import model.Commit;
-import model.Package;
+import model.Module;
 
-public class ClusterWeightCalculator implements WeightCalculator<Package, Commit> {
+public class ModuleWeightCalculator implements WeightCalculator<Module, Commit> {
 
     @Override
-    public Table<Package, Package, Integer> calculate(final Set<Package> vertices, final List<Commit> possibleEdges) {
-        final Table<Package, Package, Integer> clusterTable = HashBasedTable.create();
-        final List<Package> verticesList = new ArrayList<>(vertices);
-        int count = 0;
+    public Table<Module, Module, Integer> calculate(final Set<Module> vertices, final List<Commit> possibleEdges) {
+        final Table<Module, Module, Integer> clusterTable = HashBasedTable.create();
+        final List<Module> verticesList = new ArrayList<>(vertices);
         for (final Commit commit : possibleEdges) {
-            System.out.println(count);
             for (int i = 0; i < verticesList.size(); i++) {
                 for (int j = i + 1; j < verticesList.size(); j++) {
                     final int weightTemp = calculateBetweenClusterWeight(verticesList.get(i), verticesList.get(j), commit);
                     if (clusterTable.contains(verticesList.get(i), verticesList.get(j))) {
-                        clusterTable.put(verticesList.get(i), verticesList.get(j), clusterTable.get(verticesList.get(i), verticesList.get(j)) + weightTemp);
+                        int value = clusterTable.get(verticesList.get(i), verticesList.get(j));
+                        clusterTable.put(verticesList.get(i), verticesList.get(j), value + weightTemp);
                     } else {
                         clusterTable.put(verticesList.get(i), verticesList.get(j), weightTemp);
                     }
                 }
             }
-            count++;
         }
 
         return clusterTable;
     }
 
 
-    private int calculateBetweenClusterWeight(final Package package1, final Package package2, Commit commit) {
-        return !Collections.disjoint(package1.getFiles(), commit.getPaths()) && !Collections.disjoint(package2.getFiles(), commit.getPaths()) ? 1 : 0;
+    private int calculateBetweenClusterWeight(final Module module1, final Module module2, Commit commit) {
+        return !Collections.disjoint(module1.getFiles(), commit.getPaths()) && !Collections.disjoint(module2.getFiles(), commit.getPaths()) ? 1 : 0;
     }
 }
