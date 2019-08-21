@@ -50,7 +50,7 @@ public class Main {
         final String folder = FileHandler.generateFolderName(repo);
         FileHandler<Module> fileExporter = new FileHandler<>();
         FileHandler.createFolder(folder);
-        fileExporter.export(clusteringResult.getClusters(), folder + "/clusterClusters.txt");
+        fileExporter.export(clusteringResult.getClusters(), folder + File.separator + "clusterClusters.txt");
         long endTime = System.nanoTime();
         System.out.println(clusteringResult.getClusters().size());
 

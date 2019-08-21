@@ -36,7 +36,7 @@ public class FileHandler<V> {
         int count = 1;
         for (final Collection<V> cluster : data) {
             final int finalCount = count;
-            cluster.forEach(c -> writer.println("Cluster" + finalCount + "/" + c));
+            cluster.forEach(c -> writer.println("Cluster" + finalCount + File.separator + c));
             count++;
         }
         writer.close();
