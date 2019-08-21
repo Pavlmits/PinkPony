@@ -3,6 +3,8 @@ package util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
@@ -20,8 +22,8 @@ import org.apache.commons.io.FileUtils;
 
 public class FileHandler<V> {
 
-    public void export(final Collection<Collection<V>> data, final String fileName) throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+    public void export(final Collection<Collection<V>> data, final String file) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(file, "UTF-8");
         for (final Collection<V> cluster : data) {
             cluster.forEach(writer::println);
             writer.println("----------------------------");
@@ -48,7 +50,7 @@ public class FileHandler<V> {
         writer.close();
     }
 
-    public  static Table<String, String, Integer> readTable(final String fileName) throws IOException {
+    public static Table<String, String, Integer> readTable(final String fileName) throws IOException {
         final Table<String, String, Integer> table = HashBasedTable.create();
         final Path path = Paths.get(fileName);
         final List<String> lines = Files.lines(path).collect(Collectors.toList());
@@ -57,13 +59,6 @@ public class FileHandler<V> {
             table.put(array[0], array[1], Integer.valueOf(array[2]));
         }
         return table;
-    }
-
-
-    public static void exportSvg(final String svgString) throws FileNotFoundException {
-        final PrintWriter printWriter = new PrintWriter("graph.svg");
-        printWriter.println(svgString);
-        printWriter.close();
     }
 
     public static String generateFolderName(final String path) {
