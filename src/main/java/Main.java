@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -56,7 +57,7 @@ public class Main {
         final JavascriptToolInputGenerator javascriptToolInputGenerator = new JavascriptToolInputGenerator();
         javascriptToolInputGenerator.generate(clusteringResult.getWeightTable(), folder);
         final GraphVizVisualizer<Module> graphVizVisualizer = new GraphVizVisualizer();
-        graphVizVisualizer.generate(clusteringResult.getWeightTable(), folder + "/visualization/graphVizFile.dot");
+        graphVizVisualizer.generate(clusteringResult.getWeightTable(), folder + File.separator + "graphVizFile.dot");
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
 
