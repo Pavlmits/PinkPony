@@ -2,7 +2,7 @@ package clusteringlevel;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -27,7 +27,7 @@ public class ModuleLevel implements ClusteringLevel<Module> {
 
     private final WeightCalculator weightCalculator;
 
-    public ModuleLevel(final GraphCreator graphCreator, final WeightCalculator weightCalculator) {
+     ModuleLevel(final GraphCreator graphCreator, final WeightCalculator weightCalculator) {
         this.graphCreator = graphCreator;
         this.weightCalculator = weightCalculator;
     }
@@ -35,7 +35,7 @@ public class ModuleLevel implements ClusteringLevel<Module> {
     @Override
     public ClusteringResult<Module> run(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws UnknownParameterException {
         final Logger logger = Logger.getLogger(ModuleLevel.class.getName());
-        final Set<String> files = new HashSet<>();
+        final Set<String> files = new LinkedHashSet<>();
         final FilesFilter filesFilter = new FilesFilter();
         final ClusterFileFilter clusterFileFilter = new ClusterFileFilter();
 

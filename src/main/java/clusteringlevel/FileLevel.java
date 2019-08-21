@@ -1,7 +1,7 @@
 package clusteringlevel;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -25,7 +25,7 @@ public class FileLevel implements ClusteringLevel<String> {
 
     private final WeightCalculator weightCalculator;
 
-    public FileLevel(final FilesFilter filesFilter, final GraphCreator graphCreator, final WeightCalculator weightCalculator) {
+    FileLevel(final FilesFilter filesFilter, final GraphCreator graphCreator, final WeightCalculator weightCalculator) {
         this.filesFilter = filesFilter;
         this.graphCreator = graphCreator;
         this.weightCalculator = weightCalculator;
@@ -35,20 +35,8 @@ public class FileLevel implements ClusteringLevel<String> {
     @Override
     public ClusteringResult<String> run(final String repo, final List<Commit> commitList, final List<String> packages, final String clusteringAlgo) throws UnknownParameterException {
         final Logger logger = Logger.getLogger(FileLevel.class.getName());
-        final Set<String> files = new HashSet<>();
-
-        for (Commit commit : commitList) {
-            commit.setPaths(filesFilter.filterAll(commit.getPaths()));
-            if (!packages.isEmpty()) {
-                files.addAll(filesFilter.filterBasedOnPackage(commit.getPaths(), packages));
-            } else {
-                files.addAll(commit.getPaths());
-            }
-            files.removeAll(commit.getOldPaths());
-        }
-
         logger.log(Level.INFO, "Create graph...");
-
+        final Set<String> files = extractFilesFromCommits(commitList, packages);
         final Table weightedTable = weightCalculator.calculate(files, commitList);
 
         logger.log(Level.INFO, "Calculate clusters...");
@@ -62,5 +50,18 @@ public class FileLevel implements ClusteringLevel<String> {
 
         return new ClusteringResult<>(weightedTable, clusters, files);
     }
+
+    public Set<String> extractFilesFromCommits(final List<Commit> commitList, final List<String> packages) {
+        final Set<String> files = new LinkedHashSet<>();
+
+        for (Commit commit : commitList) {
+            commit.setPaths(filesFilter.filterAll(commit.getPaths()));
+            files.addAll(filesFilter.getFilteredList(commit.getPaths(), packages));
+            if(commit.getOldPaths() != null)
+                files.removeAll(commit.getOldPaths());
+        }
+        return files;
+    }
+
 
 }

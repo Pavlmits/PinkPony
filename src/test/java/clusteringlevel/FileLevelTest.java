@@ -1,34 +1,37 @@
 package clusteringlevel;
 
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import exception.UnknownParameterException;
 import filters.FilesFilter;
 import graph.GraphCreator;
+import model.ClusteringResult;
 import model.Commit;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import weightcalculator.CommitWeightCalculator;
 import weightcalculator.WeightCalculator;
 
+@RunWith(MockitoJUnitRunner.class)
 public class FileLevelTest {
 
-    @Mock
-    private FilesFilter filesFilter;
+    private FilesFilter filesFilter = new FilesFilter();
 
-    @Mock
-    private GraphCreator graphCreator;
+    private GraphCreator graphCreator = new GraphCreator();
 
-    @Mock
-    private WeightCalculator weightCalculator;
+    private WeightCalculator weightCalculator = new CommitWeightCalculator();
 
     @InjectMocks
-    private FileLevel fileLevel;
+    private FileLevel fileLevel = new FileLevel(filesFilter, graphCreator, weightCalculator);
 
     private List<Commit> commitList;
 
@@ -37,6 +40,8 @@ public class FileLevelTest {
     private List<String> paths2 = new ArrayList<>();
 
     private List<String> paths3 = new ArrayList<>();
+
+    private List<String> prefixs = new ArrayList<>();
 
     @Before
     public void setup() {
@@ -57,19 +62,44 @@ public class FileLevelTest {
         paths3.add("Xa/1");
         paths3.add("NM/1");
         paths3.add("NM/2");
+
+        prefixs.add("Pav");
+        prefixs.add("Xa");
         commitList.add(new Commit("1", paths1));
         commitList.add(new Commit("2", paths2));
         commitList.add(new Commit("3", paths3));
     }
 
-    @Ignore("I have to finish it")
     @Test
     public void whenPackagesAreEmptyListTest() throws UnknownParameterException {
-        when(filesFilter.filterAll(paths1)).thenReturn(paths1);
-        when(filesFilter.filterAll(paths2)).thenReturn(paths2);
-        when(filesFilter.filterAll(paths3)).thenReturn(paths3);
+        final ClusteringResult<String> actualResult = fileLevel.run("repo", commitList, new ArrayList<>(), "mr");
+        assertEquals(18, actualResult.getWeightTable().size());
+        assertEquals(7, actualResult.getFiles().size());
+        assertFalse(actualResult.getClusters().isEmpty());
 
-        fileLevel.run("repo", commitList, new ArrayList<>(), "mr");
     }
+
+    @Test
+    public void extractFilesFromCommitsWhenNoCommits() {
+        final Set<String> files = fileLevel.extractFilesFromCommits(new ArrayList<>(), new ArrayList<>());
+
+        assertTrue(files.isEmpty());
+    }
+
+    @Test
+    public void extractFileFromCommitsWhenCommitsExistsNoPackages() {
+        final Set<String> files = fileLevel.extractFilesFromCommits(commitList, new ArrayList<>());
+
+        assertEquals(7, files.size());
+    }
+
+    @Test
+    public void extractFileFromCommitsWhenCommitsAndPackagesExists() {
+
+        final Set<String> files = fileLevel.extractFilesFromCommits(commitList, prefixs);
+
+        assertEquals(5, files.size());
+    }
+
 
 }

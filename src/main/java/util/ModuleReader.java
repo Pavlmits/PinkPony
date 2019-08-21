@@ -18,7 +18,7 @@ public class ModuleReader {
 
     }
 
-    public static List<String> readFromPackageName(final String packageName, final String repo) {
+    public List<String> readFromPackageName(final String packageName, final String repo) {
         final File file = new File(repo.substring(0, repo.lastIndexOf('\\') + 1) + packageName);
         final List<String> packages = Arrays.asList(Objects.requireNonNull(file.list((current, name) -> new File(current, name).isDirectory())));
         packages.replaceAll(pack -> packageName + "/" + pack);

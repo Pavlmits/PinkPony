@@ -21,15 +21,19 @@ public class FilesFilter {
                 .collect(Collectors.toList());
     }
 
-    public List<String> filterBasedOnPackage(final List<String> fileList, final List<String> regexs) {
+    public List<String> filterBasedOnPackage(final List<String> fileList, final List<String> prefixs) {
         List<String> files = new ArrayList<>();
-        for (final String regex : regexs) {
+        for (final String regex : prefixs) {
             files.addAll(fileList.stream()
                     .filter(file -> file.startsWith(regex))
                     .collect(Collectors.toList()));
         }
         return files;
 
+    }
+
+    public List<String> getFilteredList(final List<String> fileList, final List<String> prefixs) {
+        return prefixs.isEmpty() ? fileList : filterBasedOnPackage(fileList, prefixs);
     }
 
 }

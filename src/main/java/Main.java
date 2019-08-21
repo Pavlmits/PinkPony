@@ -19,6 +19,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.modelmapper.ModelMapper;
 import util.FileHandler;
+import util.ModuleReader;
 import visualization.JavascriptToolInputGenerator;
 import visualization.graphviz.GraphVizVisualizer;
 
@@ -30,7 +31,8 @@ public class Main {
         final String repo = args[0];
         final String clusteringLevel = args[1];
         final String clusteringAlgo = args[2];
-        final List<String> packs = ModuleExtractor.extract(args, repo);
+        final ModuleExtractor moduleExtractor = new ModuleExtractor(new ModuleReader());
+        final List<String> packs = moduleExtractor.extract(args, repo);
 
         final Logger logger = Logger.getLogger(Main.class.getName());
         logger.log(Level.INFO, "Open repository...");
