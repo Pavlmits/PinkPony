@@ -12,6 +12,7 @@ import org.eclipse.jgit.api.ListBranchCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class GitCreatorTest {
@@ -27,6 +28,7 @@ public class GitCreatorTest {
 
     }
 
+    @Ignore
     @Test
     public void createLocalGitInstance() throws IOException, GitAPIException {
         final Git git = GitCreator.createLocalGitInstance(localPath +"\\.git");

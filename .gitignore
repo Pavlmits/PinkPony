@@ -22,7 +22,6 @@
 *.iml
 *.png
 *.jpg
-*.txt
 *.dot
 *.svg
 *.diagrams

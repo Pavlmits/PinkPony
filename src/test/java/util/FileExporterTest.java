@@ -39,6 +39,7 @@ public class FileExporterTest {
         assertEquals("ojAlgo", actual);
     }
 
+    @Ignore
     @Test
     public void readTableTest() throws IOException {
         final Table<String, String, Integer> table = FileHandler.readTable("table.txt");
