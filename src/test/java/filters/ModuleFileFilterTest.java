@@ -71,8 +71,8 @@ public class ModuleFileFilterTest {
 
         assertFalse(actual.isEmpty());
         assertEquals(2, actual.size());
-        assertEquals("Xaris", actualList.get(0).getName());
-        assertEquals(1, actualList.get(0).getFiles().size());
+        assertEquals("Pavlina", actualList.get(0).getName());
+        assertEquals(2, actualList.get(0).getFiles().size());
 
     }
 

@@ -16,13 +16,12 @@ public class ModuleReaderTest {
         ModuleReader.readFromFile("lalalala");
     }
 
-    @Ignore
     @Test
     public void readTest() throws IOException {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("util/file.txt");
-        final List<String> content = ModuleReader.readFromFile(url.getFile());
-        assertEquals(2, content.size());
-        assertEquals("lala", content.get(0));
+        final String file = "src\\test\\resources\\util\\file.txt";
+        final List<String> content = ModuleReader.readFromFile(file);
+        assertEquals(1, content.size());
+        assertEquals("lalala", content.get(0));
     }
 
 

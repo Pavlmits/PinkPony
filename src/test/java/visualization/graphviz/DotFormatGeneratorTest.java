@@ -1,6 +1,6 @@
 package visualization.graphviz;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class DotFormatGeneratorTest {
     public void dotToTableTest() throws IOException {
         final DotFormatGenerator dotFormatGenerator = new DotFormatGenerator();
 
-        final Table<String, String, Integer> table = dotFormatGenerator.dotToTableGenerator("graphVizFile.dot");
+        final Table<String, String, Integer> table = dotFormatGenerator.dotToTableGenerator("src\\test\\resources\\graphVizFile.dot");
 
         assertTrue(!table.isEmpty());
     }

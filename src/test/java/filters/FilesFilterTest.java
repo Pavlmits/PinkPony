@@ -24,7 +24,7 @@ public class FilesFilterTest {
     public void filterAllTest() {
         fileList.add("file.java");
         fileList.add("file.csv");
-        fileList.add("file.txt");
+        fileList.add("util/file.txt");
 
         final List<String> actual = filesFilter.filterAll(fileList);
 

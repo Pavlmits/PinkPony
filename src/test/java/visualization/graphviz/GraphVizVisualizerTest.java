@@ -39,6 +39,7 @@ public class GraphVizVisualizerTest {
                 "\"Two\"->\"Three\"[ label = \"8\"]\n" +
                 "}\n\r\n";
 
+        System.out.println(expected);
         final Table<String, String, Integer> clusters = HashBasedTable.create();
         clusters.put("One", "Two", 7);
         clusters.put("Two", "Three", 8);
