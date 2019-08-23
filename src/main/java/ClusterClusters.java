@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -13,7 +15,7 @@ import visualization.graphviz.GraphVizVisualizer;
 public class ClusterClusters {
 
     public static void main(String[] args) throws IOException, UnknownParameterException {
-        final Table<String, String, Integer> table = FileHandler.readTable("table1.txt");
+        final Table<String, String, Integer> table = FileHandler.readTable(new FileInputStream(new File("table1.txt")));
         final Clustering max = ClusteringFactory.getClustering("max", new GraphCreator());
         final Clustering mr = ClusteringFactory.getClustering("mr", new GraphCreator());
         final Clustering watset = ClusteringFactory.getClustering("watset", new GraphCreator());

@@ -3,9 +3,9 @@ package extractors;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,17 +22,18 @@ public class ModuleExtractorTest {
     @Mock
     private ModuleReader moduleReader;
 
-    @Ignore
     @Test
-    public void extractAllTest() {
+    public void extractTest() {
         final String[] args = {"one", "two", "three", "all"};
         final String repo = "repo";
+        final List<String> expected = new ArrayList<>();
+        expected.add("pa");
 
-        //when(moduleReader.readFromPackageName()).thenReturn();
+        when(moduleReader.readFromPackageName("all", repo)).thenReturn(expected);
         final List<String> actual = moduleExtractor.extract(args, repo);
 
         assertEquals(1, actual.size());
-        assertEquals("four", actual.get(0));
+        assertEquals(expected.get(0), actual.get(0));
     }
 
 }

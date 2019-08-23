@@ -5,11 +5,13 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collection;
 
 import com.google.common.collect.Table;
+import org.apache.commons.io.IOUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -39,10 +41,11 @@ public class FileExporterTest {
         assertEquals("ojAlgo", actual);
     }
 
-    @Ignore
     @Test
     public void readTableTest() throws IOException {
-        final Table<String, String, Integer> table = FileHandler.readTable("table.txt");
+        final InputStream resourceAsStream = this.getClass().getResourceAsStream("table.txt");
+        final Table<String, String, Integer> table = FileHandler.readTable(resourceAsStream);
+
 
         assertTrue(!table.isEmpty());
     }

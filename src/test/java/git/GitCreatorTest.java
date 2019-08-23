@@ -24,14 +24,13 @@ public class GitCreatorTest {
     @Before
     public void setup(){
         localPath = new File("").getAbsolutePath();
-        remotePath = new File("C:\\project");
+        remotePath = new File("project");
 
     }
 
-    @Ignore
     @Test
     public void createLocalGitInstance() throws IOException, GitAPIException {
-        final Git git = GitCreator.createLocalGitInstance(localPath +"\\.git");
+        final Git git = GitCreator.createLocalGitInstance(localPath + File.separator +".git");
         assertTrue(!git.branchList().setListMode( ListBranchCommand.ListMode.ALL ).call().isEmpty());
     }
 

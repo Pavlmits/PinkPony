@@ -1,0 +1,5 @@
+pa xa 2
+ta sa 3
+pa ta 4
+sa pa 2
+ta xa 1

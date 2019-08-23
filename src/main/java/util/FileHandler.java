@@ -1,15 +1,13 @@
 package util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,10 +48,10 @@ public class FileHandler<V> {
         writer.close();
     }
 
-    public static Table<String, String, Integer> readTable(final String fileName) throws IOException {
+    public static Table<String, String, Integer> readTable(final InputStream file) throws IOException {
         final Table<String, String, Integer> table = HashBasedTable.create();
-        final Path path = Paths.get(fileName);
-        final List<String> lines = Files.lines(path).collect(Collectors.toList());
+        final BufferedReader br = new BufferedReader(new InputStreamReader(file));
+        final List<String> lines = br.lines().collect(Collectors.toList());
         for (final String line : lines) {
             final String[] array = line.split(" ");
             table.put(array[0], array[1], Integer.valueOf(array[2]));

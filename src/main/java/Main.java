@@ -57,7 +57,7 @@ public class Main {
         final JavascriptToolInputGenerator javascriptToolInputGenerator = new JavascriptToolInputGenerator();
         javascriptToolInputGenerator.generate(clusteringResult.getWeightTable(), folder);
         final GraphVizVisualizer<Module> graphVizVisualizer = new GraphVizVisualizer();
-        graphVizVisualizer.generate(clusteringResult.getWeightTable(), folder + File.separator + "graphVizFile.dot");
+        graphVizVisualizer.generate(clusteringResult.getWeightTable(), folder + File.separator + "visualization/graphviz/graphVizFile.dot");
         long totalTime = TimeUnit.NANOSECONDS.toSeconds(endTime - startTime);
         System.out.println(totalTime + " seconds");
 

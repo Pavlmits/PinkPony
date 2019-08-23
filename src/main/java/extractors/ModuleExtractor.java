@@ -16,7 +16,7 @@ public class ModuleExtractor {
 
     public List<String> extract(final String[] args, String repo) {
         final List<String> clustersPaths = new ArrayList<>();
-        final List<String> all = args.length > 3 && !args[3].equals("all") ? new ArrayList<>(Arrays.asList(args).subList(3, args.length)) : new ArrayList<>();
+        final List<String> all = args.length > 3 ? new ArrayList<>(Arrays.asList(args).subList(3, args.length)) : new ArrayList<>();
         for (final String s : all) {
             clustersPaths.addAll(moduleReader.readFromPackageName(s, repo));
         }

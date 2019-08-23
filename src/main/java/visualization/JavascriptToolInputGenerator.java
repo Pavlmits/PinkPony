@@ -1,5 +1,6 @@
 package visualization;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -30,7 +31,7 @@ public class JavascriptToolInputGenerator<V> {
         generatedText.append("]\n");
         generatedText.append("}");
 
-        PrintWriter writer = new PrintWriter(folder + "/jsonFile.json", "UTF-8");
+        PrintWriter writer = new PrintWriter(folder + File.separator +"jsonFile.json", "UTF-8");
         writer.println(generatedText);
         writer.close();
 
