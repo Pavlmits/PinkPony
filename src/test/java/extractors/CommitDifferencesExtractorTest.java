@@ -3,12 +3,13 @@ package extractors;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.PathFiles;
+import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -41,9 +42,6 @@ public class CommitDifferencesExtractorTest {
         assertTrue(actual.getNewPaths().isEmpty());
     }
 
-    @Test
-    public void extractTest(){
 
-    }
 
 }

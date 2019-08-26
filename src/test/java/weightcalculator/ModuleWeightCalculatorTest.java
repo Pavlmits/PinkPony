@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,9 +66,9 @@ public class ModuleWeightCalculatorTest {
         moduleSet.add(module1);
         moduleSet.add(module2);
         moduleSet.add(module3);
-        commitList.add(new Commit("1", paths1));
-        commitList.add(new Commit("2", paths2));
-        commitList.add(new Commit("3", paths3));
+        commitList.add(new Commit("1", paths1, new ArrayList<>()));
+        commitList.add(new Commit("2", paths2, new ArrayList<>()));
+        commitList.add(new Commit("3", paths3, new ArrayList<>()));
 
         final Table<Module, Module, Integer> actualTable = moduleWeightCalculator.calculate(moduleSet, commitList);
 

@@ -65,9 +65,9 @@ public class FileLevelTest {
 
         prefixs.add("Pav");
         prefixs.add("Xa");
-        commitList.add(new Commit("1", paths1));
-        commitList.add(new Commit("2", paths2));
-        commitList.add(new Commit("3", paths3));
+        commitList.add(new Commit("1", paths1, new ArrayList<>()));
+        commitList.add(new Commit("2", paths2, new ArrayList<>()));
+        commitList.add(new Commit("3", paths3, new ArrayList<>()));
     }
 
     @Test

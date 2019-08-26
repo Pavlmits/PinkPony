@@ -1,7 +1,6 @@
 package filters;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +21,7 @@ public class ClusterFileFilter {
         return filteredFiles;
     }
 
-    public Set<Module> filterAndReturnClusters(final Set<String> files, List<String> targetPrefixes){
+    public Set<Module> filterAndReturnClusters(final Set<String> files, List<String> targetPrefixes) {
         final Set<Module> moduleSet = new LinkedHashSet<>();
         for (final String targetPrefix : targetPrefixes) {
             final List<String> targetFiles = files.stream()

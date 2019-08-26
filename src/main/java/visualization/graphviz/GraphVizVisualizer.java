@@ -31,7 +31,7 @@ public class GraphVizVisualizer<V> {
     private String buildGraphBody(final Table<V, V, Integer> clusters) {
         String body = "";
         for (Table.Cell<V, V, Integer> cell : clusters.cellSet()) {
-            if (cell.getValue() > 1) {
+            if (cell.getValue() > 3) {
                 body += "\"" + cell.getRowKey().toString() + "\"" + "->" + "\""
                         + cell.getColumnKey().toString() + "\"" + "[ label = \""
                         + cell.getValue() + "\"]\n";

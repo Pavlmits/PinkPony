@@ -1,5 +1,6 @@
 package clusteringlevel;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -57,9 +58,9 @@ public class ModuleLevelTest {
 
         prefixs.add("Pa");
         prefixs.add("Xa");
-        commitList.add(new Commit("1", paths1));
-        commitList.add(new Commit("2", paths2));
-        commitList.add(new Commit("3", paths3));
+        commitList.add(new Commit("1", paths1, new ArrayList<>()));
+        commitList.add(new Commit("2", paths2, new ArrayList<>()));
+        commitList.add(new Commit("3", paths3, new ArrayList<>()));
     }
 
 
@@ -78,6 +79,18 @@ public class ModuleLevelTest {
 
         //assertFalse(actualResult.getFiles().isEmpty());
         assertTrue(actualResult.getClusters().isEmpty());
+    }
+
+
+    @Test
+    public void runTest() throws UnknownParameterException {
+        final List<String> packages = new ArrayList<>();
+        packages.add("Pa");
+        packages.add("NM");
+        final ClusteringResult<Module> actualResult = moduleLevel.run("repo", commitList, packages, "ch");
+
+        assertFalse(actualResult.getClusters().isEmpty());
+
     }
 
 }
