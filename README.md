@@ -28,7 +28,7 @@ Depends the investigation that you want to do, the application provides two kind
 $ java -jar pinkpony.jar path\to\.git file max
 ```
 * This will suggest modules under the spesific module
-##### Exaple
+##### Example
 ###### input
 <pre>
 moduleName
