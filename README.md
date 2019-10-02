@@ -7,7 +7,12 @@ The application produce 2 files.
 * `cluster.txt`: contains the clusters;
 * `graphViz.dot`: a [.dot](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) file to visualize the co-change graph
 ## Usage
-To run the Pink pony application you have to download the [recently released version](https://github.com/Pavlmits/PinkPony/releases/latest).
+To run the Pink pony application you have to download the [recently released version](https://github.com/Pavlmits/PinkPony/releases/latest).<br/>
+Or you can clone it and build it with maven and use the jar.
+```bash
+$ mvn clean install
+```
+
 
 #### Clustering algorithms options
 * `mr`: [Markov Clustering] is hard clustering algorithm;
