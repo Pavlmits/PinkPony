@@ -95,3 +95,4 @@ The Pink Pony application is a part of my thesis project.
 [Chinese Whispers]: https://dl.acm.org/citation.cfm?id=1654774
 [MaxMax]: https://doi.org/10.1007/978-3-642-37247-6_30
 [Watset]: https://doi.org/10.1162/COLI_a_00354
+
