@@ -4,7 +4,7 @@ Functionally related files are grouped into the same cluster. In this way the to
 > <i> What changes together should be also together </i>
 
 ## Result
-The application produces 2 files.    
+The application produces 2 files:
 * `cluster.txt`: contains the clusters;
 * `graphViz.dot`: a [.dot](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) file to visualize the co-change graph.
 ## Usage
