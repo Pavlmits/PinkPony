@@ -5,7 +5,7 @@ Pink pony is a free software command-line application that suggest functional cl
 ## Result
 The application produces 2 files.    
 * `cluster.txt`: contains the clusters;
-* `graphViz.dot`: a [.dot](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) file to visualize the co-change graph
+* `graphViz.dot`: a [.dot](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) file to visualize the co-change graph.
 ## Usage
 To run the Pink pony application you have to download the [recently released version](https://github.com/Pavlmits/PinkPony/releases/latest).
 
@@ -18,9 +18,10 @@ To run the Pink pony application you have to download the [recently released ver
 The implementation of the algorithms used from [Watset project](https://github.com/nlpub/watset-java)
 
 #### Level of clustering
+
 Depending on the investigation that you want to do, the application provides two options:
-* `file` : Suggest functional clusters on file level. 
-* `module` : Suggest functional clusters on module level.
+* `file` : Suggests functional clusters on file level. 
+* `module` : Suggests functional clusters on module level.
 
 * This will suggest functional clusters from files.
 ```bash
