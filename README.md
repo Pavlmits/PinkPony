@@ -1,5 +1,6 @@
 # PinkPony
-Pink pony is a free software command-line application that suggest functional clusters based on the common changes on git.  
+Pink pony is a free software command-line application that suggests functional clusters based on the common changes on git.
+Functionally related files are grouped into the same cluster. In this way the tool can help to split a monolithic application into a set of microservices.
 > <i> What changes together should be also together </i>
 
 ## Result
