@@ -5,8 +5,8 @@ Functionally related files are grouped into the same cluster. In this way the to
 
 ## Result
 The application produces 2 files.    
-* `cluster.txt`: contains the clusters;
-* `graphViz.dot`: a [.dot](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) file to visualize the co-change graph
+* `cluster.txt` - contains clusters;
+* `graphViz.dot` - [.dot](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) file that visualizes the co-change graph.
 ## Usage
 To run the Pink pony application you have to download the [recently released version](https://github.com/Pavlmits/PinkPony/releases/latest).
 
