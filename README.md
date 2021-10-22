@@ -19,7 +19,6 @@ The implementation of the algorithms used from [Watset project](https://github.c
 
 #### Level of clustering
 Depending on the investigation that you want to do, the application provides two options:
-
 * `file` : Suggest functional clusters on file level. 
 * `module` : Suggest functional clusters on module level.
 
@@ -27,7 +26,7 @@ Depending on the investigation that you want to do, the application provides two
 ```bash
 $ java -jar pinkpony.jar path\to\.git file max
 ```
-* This will suggest modules under the spesific module
+* This will suggest modules under the specific module
 ##### Example
 ###### input
 <pre>
