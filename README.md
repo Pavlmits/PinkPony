@@ -57,7 +57,7 @@ $ java -jar pinkpony.jar path\to\.git file max moduleName
 ```
 
 * The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm.
-##### Exaple
+##### Example
 ###### input 
 <pre>
 mod1
@@ -89,7 +89,6 @@ cluster2
 ```bash
 $ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
 ```
-
 
 The Pink Pony application is a part of my thesis project.
 
