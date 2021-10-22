@@ -18,7 +18,7 @@ To run the Pink pony application you have to download the [recently released ver
 The implementation of the algorithms used from [Watset project](https://github.com/nlpub/watset-java)
 
 #### Level of clustering
-Depends the investigation that you want to do, the application provides two kind of options.
+Depending on the investigation that you want to do, the application provides two kinds of options.
 
 * `file` : Suggest functional clusters on file level. 
 * `module` : Suggest functional clusters on module level.
@@ -27,7 +27,7 @@ Depends the investigation that you want to do, the application provides two kind
 ```bash
 $ java -jar pinkpony.jar path\to\.git file max
 ```
-* This will suggest modules under the spesific module
+* This will suggest modules under the specific module
 ##### Example
 ###### input
 <pre>
