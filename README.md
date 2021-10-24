@@ -24,12 +24,14 @@ The implementation of the algorithms used from [Watset project](https://github.c
 Depending on the investigation that you want to do, the application provides two options:
 * `file` : Suggests functional clusters on file level. 
 * `module` : Suggests functional clusters on module level.
-
-* This will suggest functional clusters from files.
+* This command will suggest functional clusters from files:
 ```bash
 $ java -jar pinkpony.jar path\to\.git file max
 ```
-* This will suggest modules under the specific module
+* This command will suggest modules under the specific module:
+```bash
+$ java -jar pinkpony.jar path\to\.git file max moduleName
+```
 ##### Example
 ###### input
 <pre>
@@ -53,11 +55,10 @@ moduleName
         file2
         file15
 </pre>
+* The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm:
 ```bash
-$ java -jar pinkpony.jar path\to\.git file max moduleName
+$ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
 ```
-
-* The following command will suggest new co-change modules from the submodules of mod1, mod2, mod3 with the [Markov Clustering] algorithm.
 ##### Example
 ###### input 
 <pre>
@@ -86,10 +87,6 @@ cluster2
     subMod1
 ...
 </pre>
-    
-```bash
-$ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
-```
 
 The Pink Pony application is a part of my thesis project.
 
