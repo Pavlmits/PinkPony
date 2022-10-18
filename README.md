@@ -91,7 +91,6 @@ cluster2
 $ java -jar pinkpony.jar path\to\.git module mr mod1 mod1 mod2  
 ```
 
-
 The Pink Pony application is a part of my thesis project.
 
 [Markov Clustering]: https://doi.org/10.1137/040608635
